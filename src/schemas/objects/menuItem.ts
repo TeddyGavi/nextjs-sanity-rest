@@ -22,21 +22,20 @@ export default defineType({
       name: 'price',
       title: 'Price',
       type: 'number',
-      validation: (Rule) => [
-        Rule.required(),
-        Rule.precision(2).warning('Maximum two decimal places!'),
-        Rule.positive().error('Cannot be negative!'),
-      ],
+      validation: (Rule) =>
+        Rule.required()
+          .positive()
+          .precision(2)
+          .warning('Maximum two decimal places!'),
     }),
     defineField({
-      name: 'price',
-      title: 'Price',
+      name: 'priceTwo',
+      title: 'Price Two',
       type: 'number',
       description:
         'Secondary Price, if you input a number here it will be displayed as a range',
       validation: (Rule) => [
         Rule.precision(2).warning('Maximum two decimal places!'),
-        Rule.positive().error('Cannot be negative!'),
       ],
     }),
   ],

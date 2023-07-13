@@ -16,16 +16,20 @@ import {
 import { schema } from '~/schemas'
 import { productionUrl } from '~/utils/productionUrl'
 
+import { myStructure } from './sanity/deskStructure'
+
 export default defineConfig({
   basePath: '/studio',
-  name: 'project-name',
-  title: 'Project Name',
+  name: 'pho-restaurant',
+  title: 'Taste of Siagon',
   projectId,
   dataset,
   //edit schemas in './src/schemas'
   schema,
   plugins: [
-    deskTool(),
+    deskTool({
+      structure: myStructure,
+    }),
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
