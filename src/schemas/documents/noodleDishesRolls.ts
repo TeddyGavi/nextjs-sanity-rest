@@ -13,4 +13,14 @@ export default defineType({
       type: 'menuItem',
     }),
   ],
+  preview: {
+    select: {
+      price: 'item.price',
+      title: 'item.title',
+    },
+    prepare(selection) {
+      const { price, title } = selection
+      return { ...selection, subtitle: `Price: ${price}` }
+    },
+  },
 })
