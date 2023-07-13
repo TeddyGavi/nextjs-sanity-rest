@@ -10,7 +10,7 @@ export const myStructure = (S: StructureBuilder) =>
     .items([
       S.listItem()
         .id('menu')
-        .title('Menu')
+        .title('Menu Items')
         .icon(MenuIcon)
         .child(
           S.list()
@@ -18,7 +18,8 @@ export const myStructure = (S: StructureBuilder) =>
             .showIcons(false)
             .items([
               ...S.documentTypeListItems().filter(
-                (listItem) => listItem.getId() !== 'information'
+                (listItem) =>
+                  !['information', 'siteSettings'].includes(listItem.getId())
               ),
             ])
         ),
@@ -56,7 +57,4 @@ export const myStructure = (S: StructureBuilder) =>
                 ),
             ])
         ),
-      // ...S.documentTypeListItems().filter(
-      //   (listItem) => !['drinks'].includes(listItem.getId())
-      // ),
     ])
