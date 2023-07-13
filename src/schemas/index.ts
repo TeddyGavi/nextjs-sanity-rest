@@ -7,6 +7,7 @@ import drinks from './documents/drinks'
 import noodleDishesRolls from './documents/noodleDishesRolls'
 import pho from './documents/pho'
 import restaurant from './documents/restaurant'
+import address from './objects/address'
 import menuItem from './objects/menuItem'
 
 export const schemaTypes = [
@@ -16,6 +17,7 @@ export const schemaTypes = [
   pho,
   noodleDishesRolls,
   drinks,
+  address,
   restaurant,
   drinkCategory,
 ]
@@ -25,6 +27,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     menuItem,
     bahnMi,
     pho,
+    address,
     noodleDishesRolls,
     drinks,
     restaurant,
