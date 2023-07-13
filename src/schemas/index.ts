@@ -9,6 +9,7 @@ import pho from './documents/pho'
 import restaurant from './documents/restaurant'
 import address from './objects/address'
 import menuItem from './objects/menuItem'
+import social from './objects/social'
 
 export const schemaTypes = [
   blockContent,
@@ -19,6 +20,7 @@ export const schemaTypes = [
   drinks,
   address,
   restaurant,
+  social,
   drinkCategory,
 ]
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -27,6 +29,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     menuItem,
     bahnMi,
     pho,
+    social,
     address,
     noodleDishesRolls,
     drinks,

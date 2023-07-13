@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { LinkIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'information',
@@ -20,6 +21,13 @@ export default defineType({
       name: 'phone',
       title: 'Phone Number',
       type: 'string',
+    }),
+    defineField({
+      name: 'links',
+      title: 'Social Links',
+      type: 'array',
+      icon: LinkIcon,
+      of: [{ type: 'socialLinks' }],
     }),
   ],
 })
