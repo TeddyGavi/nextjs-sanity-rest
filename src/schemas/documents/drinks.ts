@@ -1,9 +1,11 @@
+import { BillIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'drinks',
   title: 'Drinks',
   type: 'document',
+  icon: BillIcon,
   fields: [
     defineField({
       name: 'item',
