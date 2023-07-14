@@ -19,7 +19,7 @@ export default defineType({
       title: 'item.title'
     },
     prepare(selection) {
-      const { price, title } = selection
+      const { price } = selection
       return { ...selection, subtitle: `Price is: ${price}` }
     }
   }
