@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, defineArrayMember } from 'sanity'
 
 export default defineType({
   name: 'information',
@@ -16,7 +16,7 @@ export default defineType({
       title: 'Operation Hours',
       type: 'array',
       validation: Rule => Rule.unique(),
-      of: [{ type: 'dayAndTime' }],
+      of: [defineArrayMember({ type: 'dayAndTime' })],
       options: {
         layout: 'tags'
       }
@@ -35,7 +35,21 @@ export default defineType({
       name: 'links',
       title: 'Social Links',
       type: 'array',
-      of: [{ type: 'socialLinks' }]
+      of: [defineArrayMember({ type: 'socialLinks' })]
+    }),
+    defineField({
+      name: 'logo',
+      title: 'Restaurant Logo',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text'
+          // validation: Rule => Rule.required()
+        }
+      ]
     })
   ]
 })

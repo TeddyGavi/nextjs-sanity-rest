@@ -18,7 +18,7 @@ import { productionUrl } from '~/utils/productionUrl'
 
 import { myStructure } from './sanity/deskStructure'
 
-export default defineConfig({
+const config = defineConfig({
   basePath: '/studio',
   name: 'pho-restaurant',
   title: 'Taste of Siagon',
@@ -36,3 +36,5 @@ export default defineConfig({
     productionUrl({ previewSecretId, types: ['post'], apiVersion })
   ]
 })
+
+export default config

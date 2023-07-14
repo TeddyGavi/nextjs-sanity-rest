@@ -1,6 +1,4 @@
 import { days } from 'constants/days'
-// import {defineField, defineType} from "@sanity-typed/types"
-// import type {InferSchemaValues} from "@sanity-typed/types"
 import { defineField, defineType } from 'sanity'
 
 const verifyInput = dayAndTime => {
