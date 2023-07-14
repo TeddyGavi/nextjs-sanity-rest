@@ -6,7 +6,7 @@ export type openMenuFn = {
   isMenuOpen?: boolean
 }
 
-export default function MobileMenu({ openMenu, isMenuOpen }: openMenuFn) {
+export default function MobileMenu({ openMenu }: openMenuFn) {
   return (
     <div
       onClick={() => openMenu()}

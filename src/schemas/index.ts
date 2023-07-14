@@ -1,5 +1,3 @@
-import { SchemaTypeDefinition, Schema, SchemaType } from 'sanity'
-
 import bahnMi from './documents/bahnMi'
 import drinkCategory from './documents/drinkCategory'
 import drinks from './documents/drinks'

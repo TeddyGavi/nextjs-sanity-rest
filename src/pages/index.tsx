@@ -1,10 +1,8 @@
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { useLiveQuery } from 'next-sanity/preview'
-import Navbar from '~/components/Navbar'
+import type { GetStaticProps } from 'next'
 
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
-import { getPosts, type Post, postsQuery } from '~/lib/sanity.queries'
+import { getPosts, type Post } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 
 export const getStaticProps: GetStaticProps<
@@ -24,10 +22,8 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
-export default function IndexPage(
-  props: InferGetStaticPropsType<typeof getStaticProps>
-) {
-  const [posts] = useLiveQuery<Post[]>(props.posts, postsQuery)
+export default function IndexPage() {
+  // props: InferGetStaticPropsType<typeof getStaticProps>
   return (
     <>
       <div>Root</div>
