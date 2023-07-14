@@ -35,7 +35,7 @@ export const productionUrl = definePlugin<{
         const secret = await getPreviewSecret({
           client: client as any,
           id: previewSecretId,
-          createIfNotExists: true,
+          createIfNotExists: true
         })
         if (secret) {
           url.searchParams.set('secret', secret)
@@ -52,7 +52,7 @@ export const productionUrl = definePlugin<{
         }
 
         return prev
-      },
-    },
+      }
+    }
   }
 })

@@ -10,17 +10,17 @@ export default defineType({
     defineField({
       name: 'item',
       title: 'item',
-      type: 'menuItem',
-    }),
+      type: 'menuItem'
+    })
   ],
   preview: {
     select: {
       price: 'item.price',
-      title: 'item.title',
+      title: 'item.title'
     },
     prepare(selection) {
       const { price, title } = selection
       return { ...selection, subtitle: `Price is: ${price}` }
-    },
-  },
+    }
+  }
 })

@@ -16,7 +16,7 @@ export async function getPost(
   slug: string
 ): Promise<Post> {
   return await client.fetch(postBySlugQuery, {
-    slug,
+    slug
   })
 }
 

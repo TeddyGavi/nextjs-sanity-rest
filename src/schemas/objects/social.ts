@@ -10,17 +10,17 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'URL',
-      type: 'url',
+      type: 'url'
     }),
     defineField({
       name: 'link',
       title: 'Link Title',
-      type: 'string',
+      type: 'string'
     }),
     defineField({
       name: 'handle',
       title: 'Handle',
-      type: 'string',
-    }),
-  ],
+      type: 'string'
+    })
+  ]
 })

@@ -3,7 +3,7 @@ import { days } from 'constants/days'
 // import type {InferSchemaValues} from "@sanity-typed/types"
 import { defineField, defineType } from 'sanity'
 
-const verifyInput = (dayAndTime) => {
+const verifyInput = dayAndTime => {
   const { day, opensAt, closesAt } = dayAndTime
   if (!day) {
     return 'Please select a day'
@@ -23,7 +23,7 @@ export default defineType({
   name: 'dayAndTime',
   title: 'Open Hours',
   type: 'object',
-  validation: (Rule) => Rule.custom(verifyInput),
+  validation: Rule => Rule.custom(verifyInput),
   fields: [
     defineField({
       name: 'day',
@@ -32,33 +32,33 @@ export default defineType({
       description: 'Select day of week',
       options: {
         list: days,
-        layout: 'radio',
-      },
+        layout: 'radio'
+      }
     }),
     defineField({
       name: 'opensAt',
       title: 'Open Time',
       description: 'When will you open?',
-      type: 'string',
+      type: 'string'
     }),
     defineField({
       name: 'closesAt',
       title: 'Closing time!',
       description: 'When will you close?',
-      type: 'string',
-    }),
+      type: 'string'
+    })
   ],
   preview: {
     select: {
       day: 'day',
       opensAt: 'opensAt',
-      closesAt: 'closesAt',
+      closesAt: 'closesAt'
     },
     prepare({ day, opensAt, closesAt }) {
       return {
         title: day,
-        subtitle: `${opensAt} - ${closesAt}`,
+        subtitle: `${opensAt} - ${closesAt}`
       }
-    },
-  },
+    }
+  }
 })

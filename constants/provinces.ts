@@ -6,7 +6,7 @@ export const PROVINCES = [
     population: 4067175,
     capital: 'Edmonton',
     latitude: 53.9332706,
-    longitude: -116.5765035,
+    longitude: -116.5765035
   },
   {
     name: 'British Columbia',
@@ -15,7 +15,7 @@ export const PROVINCES = [
     population: 4648055,
     capital: 'Victoria',
     latitude: 53.7266683,
-    longitude: -127.6476206,
+    longitude: -127.6476206
   },
   {
     name: 'Manitoba',
@@ -24,7 +24,7 @@ export const PROVINCES = [
     population: 1278365,
     capital: 'Winnipeg',
     latitude: 53.7608608,
-    longitude: -98.8138763,
+    longitude: -98.8138763
   },
   {
     name: 'New Brunswick',
@@ -33,7 +33,7 @@ export const PROVINCES = [
     population: 747101,
     capital: 'Fredericton',
     latitude: 46.5653163,
-    longitude: -66.4619164,
+    longitude: -66.4619164
   },
   {
     name: 'Newfoundland And Labrador',
@@ -42,7 +42,7 @@ export const PROVINCES = [
     population: 519716,
     capital: "St John's",
     latitude: 48.6064556,
-    longitude: -56.3330408,
+    longitude: -56.3330408
   },
   {
     name: 'Nova Scotia',
@@ -51,7 +51,7 @@ export const PROVINCES = [
     population: 923598,
     capital: 'Halifax',
     latitude: 44.6819866,
-    longitude: -63.744311,
+    longitude: -63.744311
   },
   {
     name: 'Nunavut',
@@ -60,7 +60,7 @@ export const PROVINCES = [
     population: 35944,
     capital: 'Iqaluit',
     latitude: 70.2997711,
-    longitude: -83.1075769,
+    longitude: -83.1075769
   },
   {
     name: 'Northwest Territories',
@@ -69,7 +69,7 @@ export const PROVINCES = [
     population: 41786,
     capital: 'Yellowknife',
     latitude: 64.8255441,
-    longitude: -124.8457334,
+    longitude: -124.8457334
   },
   {
     name: 'Ontario',
@@ -78,7 +78,7 @@ export const PROVINCES = [
     population: 13448494,
     capital: 'Toronto',
     latitude: 51.253775,
-    longitude: -85.3232139,
+    longitude: -85.3232139
   },
   {
     name: 'Prince Edward Island',
@@ -87,7 +87,7 @@ export const PROVINCES = [
     population: 142907,
     capital: 'Charlottetown',
     latitude: 46.510712,
-    longitude: -63.4168136,
+    longitude: -63.4168136
   },
   {
     name: 'Quebec',
@@ -96,7 +96,7 @@ export const PROVINCES = [
     population: 8164361,
     capital: 'Quebec City',
     latitude: 52.9399159,
-    longitude: -73.5491361,
+    longitude: -73.5491361
   },
   {
     name: 'Saskatchewan',
@@ -105,7 +105,7 @@ export const PROVINCES = [
     population: 1098352,
     capital: 'Regina',
     latitude: 52.9399159,
-    longitude: -106.4508639,
+    longitude: -106.4508639
   },
   {
     name: 'Yukon',
@@ -114,6 +114,6 @@ export const PROVINCES = [
     population: 35874,
     capital: 'Whitehorse',
     latitude: 64.2823274,
-    longitude: -135,
-  },
+    longitude: -135
+  }
 ]

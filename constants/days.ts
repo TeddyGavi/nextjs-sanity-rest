@@ -5,5 +5,5 @@ export const days = [
   'Thursday',
   'Friday',
   'Saturday',
-  'Sunday',
+  'Sunday'
 ]

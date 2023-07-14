@@ -25,7 +25,7 @@ export const schemaTypes = [
   siteSettings,
   restaurant,
   social,
-  drinkCategory,
+  drinkCategory
 ]
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -40,6 +40,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     noodleDishesRolls,
     drinks,
     restaurant,
-    drinkCategory,
-  ],
+    drinkCategory
+  ]
 }

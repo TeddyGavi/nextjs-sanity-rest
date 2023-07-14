@@ -35,7 +35,7 @@ export async function getPreviewSecret(options: {
         .transaction()
         .createIfNotExists({
           _id: id,
-          _type: id,
+          _type: id
         })
         .patch(patch)
         .commit({ tag })

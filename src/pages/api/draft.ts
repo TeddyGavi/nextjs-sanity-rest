@@ -26,7 +26,7 @@ export default async function preview(
 
   const authClient = getClient({ token: readToken }).withConfig({
     useCdn: false,
-    token: readToken,
+    token: readToken
   })
 
   // The secret can't be stored in an env variable with a NEXT_PUBLIC_ prefix, as it would make you
@@ -35,7 +35,7 @@ export default async function preview(
   // to store the secret in your dataset.
   const storedSecret = await getPreviewSecret({
     client: authClient,
-    id: previewSecretId,
+    id: previewSecretId
   })
 
   // This is the most common way to check for auth, but we encourage you to use your existing auth

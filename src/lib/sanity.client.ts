@@ -1,4 +1,4 @@
-import { createClient,type SanityClient } from 'next-sanity'
+import { createClient, type SanityClient } from 'next-sanity'
 
 import { apiVersion, dataset, projectId, useCdn } from '~/lib/sanity.api'
 
@@ -8,7 +8,7 @@ export function getClient(preview?: { token: string }): SanityClient {
     dataset,
     apiVersion,
     useCdn,
-    perspective: 'published',
+    perspective: 'published'
   })
   if (preview) {
     if (!preview.token) {
@@ -18,7 +18,7 @@ export function getClient(preview?: { token: string }): SanityClient {
       token: preview.token,
       useCdn: false,
       ignoreBrowserTokenWarning: true,
-      perspective: 'previewDrafts',
+      perspective: 'previewDrafts'
     })
   }
   return client

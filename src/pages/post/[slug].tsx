@@ -11,7 +11,7 @@ import {
   getPost,
   type Post,
   postBySlugQuery,
-  postSlugsQuery,
+  postSlugsQuery
 } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 import { formatDate } from '~/utils'
@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps<
 
   if (!post) {
     return {
-      notFound: true,
+      notFound: true
     }
   }
 
@@ -39,8 +39,8 @@ export const getStaticProps: GetStaticProps<
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      post,
-    },
+      post
+    }
   }
 }
 
@@ -48,7 +48,7 @@ export default function ProjectSlugRoute(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
   const [post] = useLiveQuery(props.post, postBySlugQuery, {
-    slug: props.post.slug.current,
+    slug: props.post.slug.current
   })
 
   return (
@@ -84,6 +84,6 @@ export const getStaticPaths = async () => {
 
   return {
     paths: slugs?.map(({ slug }) => `/post/${slug}`) || [],
-    fallback: 'blocking',
+    fallback: 'blocking'
   }
 }

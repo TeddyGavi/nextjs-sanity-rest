@@ -10,24 +10,24 @@ export default defineType({
     defineField({
       name: 'item',
       title: 'Item',
-      type: 'menuItem',
+      type: 'menuItem'
     }),
     defineField({
       name: 'category',
       title: 'Category',
       type: 'reference',
       to: { type: 'drinkCategory' },
-      validation: (Rule) => Rule.required(),
-    }),
+      validation: Rule => Rule.required()
+    })
   ],
   preview: {
     select: {
       price: 'item.price',
-      title: 'item.title',
+      title: 'item.title'
     },
     prepare(selection) {
-      const { price, title } = selection
+      const { price } = selection
       return { ...selection, subtitle: `Price: ${price}` }
-    },
-  },
+    }
+  }
 })

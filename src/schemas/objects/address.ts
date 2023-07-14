@@ -1,8 +1,8 @@
 import { PROVINCES } from 'constants/provinces'
 import { defineField, defineType } from 'sanity'
-const provTransformed = PROVINCES.map((prov) => ({
+const provTransformed = PROVINCES.map(prov => ({
   title: prov.short,
-  value: prov.name,
+  value: prov.name
 }))
 
 export default defineType({
@@ -13,7 +13,7 @@ export default defineType({
     defineField({
       name: 'city',
       title: 'City or Town',
-      type: 'string',
+      type: 'string'
     }),
     defineField({
       name: 'province',
@@ -21,18 +21,18 @@ export default defineType({
       type: 'string',
       options: {
         list: provTransformed,
-        layout: 'dropdown',
-      },
+        layout: 'dropdown'
+      }
     }),
     defineField({
       name: 'postalCode',
       title: 'Postal Code',
-      type: 'string',
+      type: 'string'
     }),
     defineField({
       name: 'streetOrPO',
       title: 'Street Or P.O. box',
-      type: 'string',
-    }),
-  ],
+      type: 'string'
+    })
+  ]
 })

@@ -18,9 +18,9 @@ export const myStructure = (S: StructureBuilder) =>
             .showIcons(false)
             .items([
               ...S.documentTypeListItems().filter(
-                (listItem) =>
+                listItem =>
                   !['information', 'siteSettings'].includes(listItem.getId())
-              ),
+              )
             ])
         ),
       S.listItem()
@@ -38,7 +38,7 @@ export const myStructure = (S: StructureBuilder) =>
                   S.document()
                     .schemaType('information')
                     .documentId('information')
-                ),
+                )
             ])
         ),
       S.listItem()
@@ -54,7 +54,7 @@ export const myStructure = (S: StructureBuilder) =>
                 .showIcon(false)
                 .child(
                   S.document().schemaType('siteSettings').documentId('settings')
-                ),
+                )
             ])
-        ),
+        )
     ])

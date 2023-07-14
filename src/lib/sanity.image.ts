@@ -5,7 +5,7 @@ import { dataset, projectId } from '~/lib/sanity.api'
 
 const imageBuilder = createImageUrlBuilder({
   projectId: projectId || '',
-  dataset: dataset || '',
+  dataset: dataset || ''
 })
 
 export const urlForImage = (source: Image) => {

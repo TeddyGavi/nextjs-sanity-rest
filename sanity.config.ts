@@ -11,7 +11,7 @@ import {
   apiVersion,
   dataset,
   previewSecretId,
-  projectId,
+  projectId
 } from '~/lib/sanity.api'
 import { schema } from '~/schemas'
 import { productionUrl } from '~/utils/productionUrl'
@@ -28,11 +28,11 @@ export default defineConfig({
   schema,
   plugins: [
     deskTool({
-      structure: myStructure,
+      structure: myStructure
     }),
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
-    productionUrl({ previewSecretId, types: ['post'], apiVersion }),
-  ],
+    productionUrl({ previewSecretId, types: ['post'], apiVersion })
+  ]
 })

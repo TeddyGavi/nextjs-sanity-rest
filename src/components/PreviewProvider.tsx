@@ -5,7 +5,7 @@ import { getClient } from '~/lib/sanity.client'
 
 export default function PreviewProvider({
   children,
-  token,
+  token
 }: {
   children: React.ReactNode
   token: string
