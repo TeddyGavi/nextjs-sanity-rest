@@ -46,7 +46,7 @@ export default function Navbar() {
           </svg>
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <NavLinks isMenuOpen openMenu={openMenu} />
+          <NavLinks />
         </div>
       </div>
       {isMenuOpen && <MobileMenu isMenuOpen openMenu={openMenu} />}
