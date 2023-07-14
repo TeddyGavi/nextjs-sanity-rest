@@ -17,5 +17,10 @@ export default defineType({
       title: 'Link Title',
       type: 'string',
     }),
+    defineField({
+      name: 'handle',
+      title: 'Handle',
+      type: 'string',
+    }),
   ],
 })

@@ -22,11 +22,10 @@ export default defineType({
       name: 'price',
       title: 'Price',
       type: 'number',
-      validation: (Rule) =>
-        Rule.required()
-          .positive()
-          .precision(2)
-          .warning('Maximum two decimal places!'),
+      validation: (Rule) => [
+        Rule.required(),
+        Rule.precision(2).warning('Maximum two decimal places!'),
+      ],
     }),
     defineField({
       name: 'priceTwo',

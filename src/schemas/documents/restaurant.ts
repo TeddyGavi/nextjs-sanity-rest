@@ -12,6 +12,16 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'hours',
+      title: 'Operation Hours',
+      type: 'array',
+      validation: (Rule) => Rule.unique(),
+      of: [{ type: 'dayAndTime' }],
+      options: {
+        layout: 'tags',
+      },
+    }),
+    defineField({
       name: 'address',
       title: 'Address',
       type: 'address',

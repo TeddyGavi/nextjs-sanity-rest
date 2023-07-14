@@ -17,9 +17,7 @@ export default defineType({
       title: 'Category',
       type: 'reference',
       to: { type: 'drinkCategory' },
-      options: {
-        layout: 'radio',
-      },
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
