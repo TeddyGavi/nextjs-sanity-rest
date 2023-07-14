@@ -1,3 +1,4 @@
 node_modules
 .env.local.example
 .env
+# tailwind.config.js

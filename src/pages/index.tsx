@@ -30,7 +30,7 @@ export default function IndexPage(
   const [posts] = useLiveQuery<Post[]>(props.posts, postsQuery)
   return (
     <>
-      <Navbar />
+      <div>Root</div>
     </>
   )
 }
