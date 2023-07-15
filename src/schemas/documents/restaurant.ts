@@ -55,6 +55,11 @@ export default defineType({
           // validation: Rule => Rule.required()
         }
       ]
+    }),
+    defineField({
+      name: 'homeVid',
+      title: 'Home Page Video',
+      type: 'mux.video'
     })
   ]
 })

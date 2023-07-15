@@ -49,9 +49,7 @@ export default function App({
       </style>
       {draftMode ? (
         <PreviewProvider token={token}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Component {...pageProps} />
         </PreviewProvider>
       ) : (
         <Layout>

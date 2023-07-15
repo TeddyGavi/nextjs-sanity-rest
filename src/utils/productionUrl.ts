@@ -1,9 +1,9 @@
+/* eslint-disable */
 /**
  * This plugin sets up the "Open preview (CTRL + ALT + O)" in the dropdown menu that hosts
  * other actions like "Review changes" and "Inspect"
  * @TODO the code in this plugin is a candidate for moving into `@sanity/preview-kit/studio`
  */
-/* eslint-disable */
 import { definePlugin, type Slug } from 'sanity'
 
 import { getPreviewSecret } from './previewSecret'

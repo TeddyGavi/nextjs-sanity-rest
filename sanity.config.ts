@@ -17,6 +17,7 @@ import { schema } from '~/schemas'
 import { productionUrl } from '~/utils/productionUrl'
 
 import { myStructure } from './sanity/deskStructure'
+import { muxInput } from 'sanity-plugin-mux-input'
 
 const config = defineConfig({
   basePath: '/studio',
@@ -33,7 +34,8 @@ const config = defineConfig({
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
-    productionUrl({ previewSecretId, types: ['post'], apiVersion })
+    productionUrl({ previewSecretId, types: ['post'], apiVersion }),
+    muxInput({ mp4_support: 'standard' })
   ]
 })
 
