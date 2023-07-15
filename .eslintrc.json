@@ -1,10 +1,5 @@
 {
-  "extends": [
-    "next",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
+  "extends": ["next", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -14,6 +9,7 @@
   "rules": {
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
-    "react-hooks/exhaustive-deps": "error"
+    "react-hooks/exhaustive-deps": "error",
+    "@typescript-eslint/no-explicit-any": "warn"
   }
 }
