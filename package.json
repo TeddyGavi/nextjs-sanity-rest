@@ -10,6 +10,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@mux/blurhash": "^0.1.2",
+    "@mux/mux-player-react": "^1.11.4",
     "@next/font": "^13.4.7",
     "@portabletext/react": "3.0.4",
     "@sanity/client": "6.1.7",

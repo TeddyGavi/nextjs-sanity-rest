@@ -2,16 +2,19 @@ import type { PortableTextBlock } from '@portabletext/types'
 import type { ImageAsset, Slug } from '@sanity/types'
 import groq from 'groq'
 import { type SanityClient } from 'next-sanity'
+import { getClient } from './sanity.client'
+
+const client = getClient()
 
 /* Queries */
 const restInfoQuery = groq`*[_type == "information"]`
 const siteSettings = groq`*[_type == "siteSettings"]`
 const postsQuery = groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`
-const videoQuery = groq`*[_type == "information"]{
+const videoQuery = groq`*[_type == "information"][0]{
   homeVid{
     asset->{
-      ...,  
-	  	"url": "https://stream.mux.com/" + playbackId}
+      playbackId
+      }
   }  
 }`
 const drinkQuery = groq`*[_type == 'drinks'] {
@@ -102,35 +105,35 @@ const combinedRestuarantQuery = groq`*[_type == "information"][0]{
 /* END QUERIES */
 
 /* FUNCTIONS */
-export async function getPosts(client: SanityClient): Promise<Post[]> {
+export async function getPosts(): Promise<Post[]> {
   return await client.fetch(postsQuery)
 }
 
-export async function getAllRestInfo(client: SanityClient) {
+export async function getAllRestInfo() {
   return await client.fetch(restInfoQuery)
 }
-export async function getSelectedRestInfo(client: SanityClient) {
+export async function getSelectedRestInfo() {
   return await client.fetch(combinedRestuarantQuery)
 }
-export async function getSitSettings(client: SanityClient) {
+export async function getSitSettings() {
   return await client.fetch(siteSettings)
 }
-export async function getVideo(client: SanityClient) {
+export async function getVideo() {
   return await client.fetch(videoQuery)
 }
-export async function getMenu(client: SanityClient) {
+export async function getMenu() {
   return await client.fetch(combinedMenuQuery)
 }
-export async function getPho(client: SanityClient) {
+export async function getPho() {
   return await client.fetch(phoQuery)
 }
-export async function getDrinks(client: SanityClient) {
+export async function getDrinks() {
   return await client.fetch(drinkQuery)
 }
-export async function getMains(client: SanityClient) {
+export async function getMains() {
   return await client.fetch(mainsQuery)
 }
-export async function getBahnMi(client: SanityClient) {
+export async function getBahnMi() {
   return await client.fetch(bahnMiQuery)
 }
 export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0]`
@@ -178,5 +181,13 @@ export interface MenuItem {
   title: string
   price: number
   description: string
+}
+
+export interface VideoQueryResponse {
+  homeVid: {
+    asset: {
+      playbackId: string
+    }
+  }
 }
 /* END TYPES */
