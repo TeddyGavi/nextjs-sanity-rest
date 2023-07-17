@@ -59,7 +59,7 @@ export default defineType({
     defineField({
       name: 'homeVid',
       title: 'Home Page Video',
-      type: 'mux.video'
+      type: 'cloudinary.asset'
     })
   ]
 })

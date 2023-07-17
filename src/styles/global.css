@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .curve-footer {
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    bottom: 0;
+  }
+  .curve-footer::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 90% 25%;
+    width: 55%;
+    height: 100%;
+    background-color: white;
+    transform: translate(85%, 60%);
+  }
+
+  .curve-footer::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 55%;
+    height: 100%;
+    background-color: '#45630C';
+    transform: translate(-5%, 40%);
+  }
+}

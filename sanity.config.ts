@@ -17,8 +17,7 @@ import { schema } from '~/schemas'
 import { productionUrl } from '~/utils/productionUrl'
 
 import { myStructure } from './sanity/deskStructure'
-import { muxInput } from 'sanity-plugin-mux-input'
-
+import { cloudinarySchemaPlugin } from 'sanity-plugin-cloudinary'
 const config = defineConfig({
   basePath: '/studio',
   name: 'pho-restaurant',
@@ -35,7 +34,7 @@ const config = defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
     productionUrl({ previewSecretId, types: ['post'], apiVersion }),
-    muxInput({ mp4_support: 'standard' })
+    cloudinarySchemaPlugin()
   ]
 })
 

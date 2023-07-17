@@ -14,7 +14,7 @@ export default function Navbar() {
     toggleScrollable()
   }
   return (
-    <nav className=" bg-white text-darkMossGreen  border-gray-200 dark:bg-gray-900 shadow-md divide-x top-0">
+    <nav className="fixed w-full h-16 bg-white text-darkMossGreen  border-gray-200 dark:bg-gray-900 shadow-md divide-x top-0 z-20">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
           Tate of Siagon
@@ -56,19 +56,29 @@ export default function Navbar() {
 const links = [
   { name: 'Home', to: '/', id: 0 },
   { name: 'Menu', to: 'menu', id: 1 },
-  { name: 'About', to: 'about', id: 2 },
+  { name: 'Location', to: 'location', id: 2 },
   { name: 'Contact', to: 'contact', id: 3 },
   { name: 'Gallery', to: 'gallery', id: 4 }
 ]
 
-function NavLinks() {
+type NavLinkProps = {
+  isFooter?: boolean
+}
+
+export function NavLinks({ isFooter }: NavLinkProps) {
   return (
-    <ul className="text-lg font-medium h-full justify-evenly flex flex-col p-4 md:p-0 mt-4  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+    <ul
+      className={`text-lg font-medium h-full justify-evenly flex flex-col p-4 md:p-0 ${
+        isFooter ? `mt-0` : `mt-4`
+      }  md:flex-row md:space-x-8 md:mt-0 md:border-0`}
+    >
       {links.map(({ name, to, id }) => {
         return (
           <li
             key={id}
-            className="block py-2 pl-3 pr-4 text-darkMossGreen hover:underline transition-all duration-300  md:bg-transparent  md:p-0 dark:text-white md:dark:text-blue-500"
+            className={`block py-2 pl-3 pr-4 ${
+              isFooter ? `text-white` : `text-darkMossGreen`
+            } hover:underline transition-all duration-300  md:bg-transparent  md:p-0`}
           >
             <Link href={to}>{name}</Link>
           </li>
@@ -87,7 +97,7 @@ function MobileMenu({ openMenu }: openMenuFn) {
   return (
     <div
       onClick={() => openMenu()}
-      className="absolute w-full right-0 mx-auto bg-white h-full flex flex-col items-center"
+      className="absolute w-full right-0 mx-auto bg-white h-screen flex flex-col items-center z-100"
     >
       {/* <div className="flex flex-col items-center "> */}
       <NavLinks />

@@ -10,11 +10,20 @@ const client = getClient()
 const restInfoQuery = groq`*[_type == "information"]`
 const siteSettings = groq`*[_type == "siteSettings"]`
 const postsQuery = groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`
-const videoQuery = groq`*[_type == "information"][0]{
+const muxVideoQuery = groq`*[_type == "information"][0]{
   homeVid{
     asset->{
       playbackId
       }
+  }  
+}`
+const cloudinaryVideoQuery = groq`*[_type == "information"][0]{
+  homeVid {
+    url,
+    height,
+    format,
+    width,
+    public_id
   }  
 }`
 const drinkQuery = groq`*[_type == 'drinks'] {
@@ -46,25 +55,25 @@ const mainsQuery = groq`*[_type == 'mains'] {
   'price': item.price,    
 }`
 const combinedMenuQuery = groq`{
-  "bahnMiItems": *[_type == 'bahnMi']{
+  "Bahn Mi": *[_type == 'bahnMi']{
     _id,
     'title': item.title,
     'description': item.description,
     'price': item.price
   },
-  "phoItems": *[_type == 'pho']{
+  "Pho": *[_type == 'pho']{
     _id,
     'title': item.title,
     'description': item.description,
     'price': item.price
   },
-  "mainsItems": *[_type == 'mains']{
+  "Mains": *[_type == 'mains']{
     _id,
     'title': item.title,
     'description': item.description,
     'price': item.price
   },
-  "drinks": *[_type == 'drinks']{
+  "Drinks": *[_type == 'drinks']{
     _id, 
     'title': item.title,
     'description': item.description,
@@ -119,9 +128,9 @@ export async function getSitSettings() {
   return await client.fetch(siteSettings)
 }
 export async function getVideo() {
-  return await client.fetch(videoQuery)
+  return await client.fetch(cloudinaryVideoQuery)
 }
-export async function getMenu() {
+export async function getMenu(): Promise<CombinedMenuQuery> {
   return await client.fetch(combinedMenuQuery)
 }
 export async function getPho() {
@@ -189,5 +198,12 @@ export interface VideoQueryResponse {
       playbackId: string
     }
   }
+}
+
+export interface CombinedMenuQuery {
+  'Bahn Mi': MenuItem[]
+  Pho: MenuItem[]
+  Mains: MenuItem[]
+  Drinks: Drinks[]
 }
 /* END TYPES */

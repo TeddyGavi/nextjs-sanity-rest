@@ -1,14 +1,17 @@
+import { useEffect, useRef } from 'react'
+
 import type {
   GetStaticProps,
   GetServerSideProps,
   InferGetServerSidePropsType
 } from 'next'
-import muxBlurHash from '@mux/blurhash'
-import MuxPlayer from '@mux/mux-player-react/lazy'
+import { CldVideoPlayer } from 'next-cloudinary'
+
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
-import { getPosts, type Post, getVideo } from '~/lib/sanity.queries'
+import { getVideo } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
+import Link from 'next/link'
 
 // export const getStaticProps: GetStaticProps<
 //   SharedPageProps & {
@@ -26,49 +29,53 @@ import type { SharedPageProps } from '~/pages/_app'
 //     }
 //   }
 // }
-type HomeVideo = {
-  playbackId: string
-  sourceWidth: number
-  sourceHeight: number
-  blurHashBase64: string
+
+type SanityVideoResponse = {
+  url: string
+  height: number
+  width: number
+  format: string
+  public_id: string
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  videoInfo: HomeVideo
-}> = async () => {
+export const getServerSideProps: GetServerSideProps<
+  SanityVideoResponse
+> = async () => {
   const {
-    homeVid: {
-      asset: { playbackId }
-    }
+    homeVid: { url, height, width, format, public_id }
   } = await getVideo()
-  const { sourceWidth, sourceHeight, blurHashBase64 } = await muxBlurHash(
-    playbackId
-  )
-  const videoInfo = {
-    playbackId,
-    sourceWidth,
-    sourceHeight,
-    blurHashBase64
-  }
 
-  return { props: { videoInfo } }
+  return { props: { url, height, width, format, public_id } }
 }
 
 export default function IndexPage({
-  videoInfo
+  url,
+  height,
+  width
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <>
-      <MuxPlayer
-        loading="viewport"
-        autoPlay="muted"
+    <div className="h-screen relative">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-between gap-14 font-bold  text-teaGreen z-10">
+        <h1 className=" break-before-auto text-center text-4xl tracking-widest">
+          Experience the Authentic Flavors of Vietnam at Taste of Saigon
+        </h1>
+        <Link
+          href={'/menu'}
+          className="border-2 px-6 py-1 tracking-wide border-teaGreen hover:text-darkMossGreenAlt hover:shadow-xl hover:border-darkMossGreen focus:ring-4"
+        >
+          See the Menu
+        </Link>
+      </div>
+      <video
+        height={height}
+        width={width}
+        src={`${url}`}
+        className="border-none h-full w-full object-cover"
+        title="video player of chef cooking"
+        autoPlay
         loop
-        playbackId={videoInfo.playbackId}
-        style={{
-          aspectRatio: `${videoInfo.sourceWidth}/${videoInfo.sourceHeight}`
-        }}
-        placeholder={videoInfo.blurHashBase64}
-      />
-    </>
+        muted
+      ></video>
+    </div>
   )
 }
