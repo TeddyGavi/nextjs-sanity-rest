@@ -81,6 +81,19 @@ const combinedMenuQuery = groq`{
     'priceTwo': item.priceTwo,
     category->{'title': category, description}   
   },
+  "drinksByCategory" : *[_type == "drinkCategory"] {
+    category,
+    _id,
+    description,
+    "drinks": *[_type == "drinks" && references(^._id)] {
+      _id, 
+      'title': item.title,
+      'description': item.description,
+      'price': item.price,
+      'priceTwo': item.priceTwo,
+      category->{'title': category, description}       
+      }
+  }
 }`
 
 const combinedRestuarantQuery = groq`*[_type == "information"][0]{
@@ -111,6 +124,20 @@ const combinedRestuarantQuery = groq`*[_type == "information"][0]{
     "url": "https://stream.mux.com/" + playbackId}
   }  
 }`
+
+const drinksByCategory = groq`*[_type == "drinkCategory"] {
+category,
+_id,
+"drinks": *[_type == "drinks" && references(^._id)] {
+  _id, 
+  'title': item.title,
+  'description': item.description,
+  'price': item.price,
+  'priceTwo': item.priceTwo,
+  category->{'title': category, description}       
+  }
+}`
+
 /* END QUERIES */
 
 /* FUNCTIONS */
@@ -200,10 +227,18 @@ export interface VideoQueryResponse {
   }
 }
 
+export interface DrinkByCategory {
+  _id: string
+  category: string
+  description: string
+  drinks: Drinks[]
+}
+
 export interface CombinedMenuQuery {
   'Bahn Mi': MenuItem[]
   Pho: MenuItem[]
   Mains: MenuItem[]
   Drinks: Drinks[]
+  drinksByCategory: DrinkByCategory[]
 }
 /* END TYPES */
