@@ -14,16 +14,16 @@ export default function Navbar() {
     toggleScrollable()
   }
   return (
-    <nav className="fixed w-full h-16 bg-white text-darkMossGreen  border-gray-200 dark:bg-gray-900 shadow-md divide-x top-0 z-20">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="fixed top-0 z-20 w-full h-16 bg-white border-gray-200 divide-x shadow-md text-darkMossGreen dark:bg-gray-900">
+      <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-          Tate of Siagon
+          Tate of Saigon
         </span>
         <button
           onClick={openMenu}
           data-collapse-toggle="navbar-default"
           type="button"
-          className="inline-flex items-center w-5 h-5 justify-center text-sm  md:hidden focus:outline-none focus:ring-2 focus:ring-darkMossGreen dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center justify-center w-5 h-5 text-sm md:hidden focus:outline-none focus:ring-2 focus:ring-darkMossGreen dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
           // aria-expanded="false"
         >
@@ -57,8 +57,8 @@ const links = [
   { name: 'Home', to: '/', id: 0 },
   { name: 'Menu', to: 'menu', id: 1 },
   { name: 'Location', to: 'location', id: 2 },
-  { name: 'Contact', to: 'contact', id: 3 },
-  { name: 'Gallery', to: 'gallery', id: 4 }
+  { name: 'Contact', to: 'contact', id: 3 }
+  // { name: 'Gallery', to: 'gallery', id: 4 }
 ]
 
 type NavLinkProps = {
@@ -97,7 +97,7 @@ function MobileMenu({ openMenu }: openMenuFn) {
   return (
     <div
       onClick={() => openMenu()}
-      className="absolute w-full right-0 mx-auto bg-white h-screen flex flex-col items-center z-100"
+      className="absolute right-0 flex flex-col items-center w-full h-screen mx-auto bg-white z-100"
     >
       {/* <div className="flex flex-col items-center "> */}
       <NavLinks />

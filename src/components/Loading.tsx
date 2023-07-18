@@ -13,11 +13,10 @@ export default function Loading({
   fillColor,
   textColor
 }: LoadingProps) {
-  console.log(typeof fillColor)
   return (
     <div
       role="status"
-      className="h-screen w-screen flex flex-col gap-y-28 justify-center items-center"
+      className="flex flex-col items-center justify-center w-screen h-screen gap-y-28"
     >
       <svg
         aria-hidden="true"
@@ -44,7 +43,7 @@ export default function Loading({
         />
       </svg>
       <span className="sr-only">Loading...</span>
-      <div className="text-darkMossGreen tracking-wider font-mono font-extrabold text-2xl">
+      <div className="font-mono text-2xl font-extrabold tracking-wider text-darkMossGreen">
         Loading...
       </div>
     </div>

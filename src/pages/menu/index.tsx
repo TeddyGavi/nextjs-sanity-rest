@@ -6,7 +6,8 @@ import {
   DrinkByCategory,
   Drinks,
   getMenu,
-  MenuItem} from '~/lib/sanity.queries'
+  MenuItem
+} from '~/lib/sanity.queries'
 
 export const getStaticProps: GetStaticProps<{
   menu: CombinedMenuQuery
@@ -32,21 +33,21 @@ export default function Menu({
 function Item({ items, heading }) {
   return (
     <section>
-      <h2 className="text-center mt-4 text-2xl md:text-6xl text-darkMossGreen underline">
+      <h2 className="mt-4 text-2xl text-center underline md:text-6xl text-darkMossGreen">
         {heading}
       </h2>
-      <ul className="flex flex-col justify-center items-center w-10/12 mx-auto">
+      <ul className="flex flex-col items-center justify-center w-10/12 mx-auto">
         {items.map(({ _id, title, description, price }) => {
           return (
             <li
               key={_id}
-              className="flex flex-col items-center my-4 p-4 md:p-8"
+              className="flex flex-col items-center p-4 my-4 md:p-8"
             >
-              <div className="font-mono font-bold inline-flex gap-8 text-md md:text-2xl break-before-auto tracking-wide text-darkMossGreen">
+              <div className="inline-flex gap-8 font-mono font-bold tracking-wide text-md md:text-2xl break-before-auto text-darkMossGreen">
                 <span>{title}</span>
                 <span>{price}</span>
               </div>
-              <p className="mt-4 text-darkMossGreenAlt font-serif text-lg break-before-auto tracking-wide">
+              <p className="mt-4 font-serif text-lg tracking-wide text-darkMossGreenAlt break-before-auto">
                 {description}
               </p>
             </li>
@@ -66,15 +67,15 @@ function DrinkItem({
 }) {
   return (
     <section>
-      <h2 className="text-center mt-4 text-2xl md:text-6xl text-darkMossGreen underline">
+      <h2 className="mt-4 text-2xl text-center underline md:text-6xl text-darkMossGreen">
         {heading}
       </h2>
       {drink.map(({ _id, description, category, drinks }) => {
         return (
           <div key={_id} className="">
-            <h3 className="flex flex-col text-center items-center font-bold text-md md:text-lg  text-darkMossGreenAlt  tracking-wide mt-1 mb-0">
+            <h3 className="flex flex-col items-center mt-4 mb-0 font-bold tracking-wide text-center text-md md:text-2xl text-darkMossGreenAlt">
               {category}
-              <span className="text-md font-normal text-appleGreen italic">
+              <span className="italic font-normal text-md md:text-lg text-appleGreen">
                 {description}
               </span>
             </h3>
@@ -88,15 +89,15 @@ function DrinkItem({
 
 function OneDrinkItem({ drinks }: { drinks: Drinks[] }) {
   return (
-    <ul className="flex flex-col justify-center items-center w-10/12 mx-auto">
+    <ul className="flex flex-col items-center justify-center w-10/12 mx-auto">
       {drinks.map(({ _id, title, price, priceTwo, category }) => {
         return (
-          <li key={_id} className="flex flex-col items-center mt-1 p-1 md:p-8">
-            <div className="font-mono font-bold inline-flex gap-8 text-md md:text-2xl break-before-auto tracking-wide text-darkMossGreen">
+          <li key={_id} className="flex flex-col items-center p-1 mt-1 md:p-2">
+            <div className="inline-flex gap-8 font-mono font-bold tracking-wide text-md md:text-xl break-before-auto text-darkMossGreen">
               <span>{title}</span>
               <span>{price}</span>
             </div>
-            <p className="mt-4 text-darkMossGreenAlt font-serif text-lg break-before-auto tracking-wide">
+            <p className="mt-4 font-serif text-lg tracking-wide text-darkMossGreenAlt break-before-auto">
               {/* {description} */}
             </p>
           </li>

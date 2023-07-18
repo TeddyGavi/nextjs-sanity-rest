@@ -5,6 +5,7 @@
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { deskTool } from 'sanity/desk'
+import { cloudinarySchemaPlugin } from 'sanity-plugin-cloudinary'
 
 // see https://www.sanity.io/docs/api-versioning for how versioning works
 import {
@@ -17,11 +18,10 @@ import { schema } from '~/schemas'
 import { productionUrl } from '~/utils/productionUrl'
 
 import { myStructure } from './sanity/deskStructure'
-import { cloudinarySchemaPlugin } from 'sanity-plugin-cloudinary'
 const config = defineConfig({
   basePath: '/studio',
   name: 'pho-restaurant',
-  title: 'Taste of Siagon',
+  title: 'Taste of Saigon',
   projectId,
   dataset,
   //edit schemas in './src/schemas'

@@ -1,5 +1,5 @@
 import type { PortableTextBlock } from '@portabletext/types'
-import type { ImageAsset, Slug } from '@sanity/types'
+import type { Image, ImageAsset, Slug } from '@sanity/types'
 import groq from 'groq'
 import { type SanityClient } from 'next-sanity'
 
@@ -97,9 +97,9 @@ const combinedMenuQuery = groq`{
   }
 }`
 
-const combinedRestuarantInfoQuery = groq`*[_type == "information"][0]{
+const combinedRestaurantInfoQuery = groq`*[_type == "information"][0]{
   _id,
-  'name':Title,
+  'name':title,
   phone,
   email,
   logo,
@@ -119,11 +119,6 @@ const combinedRestuarantInfoQuery = groq`*[_type == "information"][0]{
     title,
     handle,
   },
-  homeVid{
-  asset->{
-    ...,  
-    "url": "https://stream.mux.com/" + playbackId}
-  }  
 }`
 
 const drinksByCategory = groq`*[_type == "drinkCategory"] {
@@ -151,8 +146,8 @@ export async function getPosts(): Promise<Post[]> {
 export async function getAllRestInfo() {
   return await client.fetch(restInfoQuery)
 }
-export async function getSelectedRestInfo() {
-  return await client.fetch(combinedRestuarantInfoQuery)
+export async function getSelectedRestInfo(): Promise<CombinedRestaurantInfo> {
+  return await client.fetch(combinedRestaurantInfoQuery)
 }
 export async function getSiteSettings() {
   return await client.fetch(siteSettings)
@@ -204,6 +199,40 @@ export interface Post {
   excerpt?: string
   mainImage?: ImageAsset
   body: PortableTextBlock[]
+}
+
+export interface Hour {
+  day: string
+  opensAt: string
+  closesAt: string
+}
+
+export interface Address {
+  streetOrPO: string
+  province: string
+  city: string
+  postalCode: string
+}
+
+export interface Logo extends Image {
+  alt?: string
+}
+
+export interface Link {
+  link?: string
+  title?: string
+  handle?: string
+}
+
+export interface CombinedRestaurantInfo {
+  _id: string
+  name: string
+  links: Link[]
+  email: string
+  phone: string
+  logo: Logo
+  address: Address
+  hours: Hour[]
 }
 
 interface Category {
