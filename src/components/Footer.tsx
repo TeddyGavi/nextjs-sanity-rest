@@ -1,7 +1,8 @@
-import React from 'react'
-import { NavLinks } from './Navbar'
 import { useRouter } from 'next/router'
+import React from 'react'
 import Wave from 'react-wavify'
+
+import { NavLinks } from './Navbar'
 
 export default function Footer() {
   const path = useRouter().pathname

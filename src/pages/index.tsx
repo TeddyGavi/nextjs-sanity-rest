@@ -1,17 +1,16 @@
-import { useEffect, useRef } from 'react'
-
 import type {
-  GetStaticProps,
   GetServerSideProps,
+  GetStaticProps,
   InferGetServerSidePropsType
 } from 'next'
+import Link from 'next/link'
 import { CldVideoPlayer } from 'next-cloudinary'
+import { useEffect, useRef } from 'react'
 
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import { getVideo } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
-import Link from 'next/link'
 
 // export const getStaticProps: GetStaticProps<
 //   SharedPageProps & {

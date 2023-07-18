@@ -1,12 +1,12 @@
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import React from 'react'
+
 import {
   CombinedMenuQuery,
-  MenuItem,
-  getMenu,
+  DrinkByCategory,
   Drinks,
-  DrinkByCategory
-} from '~/lib/sanity.queries'
+  getMenu,
+  MenuItem} from '~/lib/sanity.queries'
 
 export const getStaticProps: GetStaticProps<{
   menu: CombinedMenuQuery

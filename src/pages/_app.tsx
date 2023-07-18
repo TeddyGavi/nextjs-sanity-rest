@@ -1,10 +1,11 @@
 import '~/styles/global.css'
 
-import type { AppProps } from 'next/app'
 import { IBM_Plex_Mono, Inter, PT_Serif } from '@next/font/google'
-import { lazy, useEffect, useState } from 'react'
-import Layout from '~/components/Layout'
+import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import { lazy, useEffect, useState } from 'react'
+
+import Layout from '~/components/Layout'
 import Loading from '~/components/Loading'
 
 export interface SharedPageProps {
@@ -58,6 +59,8 @@ export default function App({
     }
   }, [router])
 
+  // if the route begins with /studio we are on the studio and do not show the <Layout/> else, check if we are in draft mode and render the preview provider, currently only set up for post which don't exist
+  // also, if we are loading between pages, show the loading component
   return (
     <>
       <style jsx global>
@@ -71,15 +74,15 @@ export default function App({
       </style>
       {isStudio ? (
         isLoading ? (
-          <Loading />
+          <Loading height={28} width={28} />
         ) : (
           <Component {...pageProps} />
         )
-      ) : isLoading ? (
-        <Loading />
       ) : (
         <Layout>
-          {draftMode ? ( // Use pageProps.draftMode to conditionally render the PreviewProvider
+          {isLoading ? (
+            <Loading height={28} width={28} />
+          ) : draftMode ? ( // Use draftMode to conditionally render the PreviewProvider
             <PreviewProvider token={token}>
               <Component {...pageProps} />
             </PreviewProvider>
