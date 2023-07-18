@@ -2,8 +2,10 @@ import '~/styles/global.css'
 
 import type { AppProps } from 'next/app'
 import { IBM_Plex_Mono, Inter, PT_Serif } from '@next/font/google'
-import { lazy } from 'react'
+import { lazy, useEffect, useState } from 'react'
 import Layout from '~/components/Layout'
+import { useRouter } from 'next/router'
+import Loading from '~/components/Loading'
 
 export interface SharedPageProps {
   draftMode: boolean
@@ -35,7 +37,27 @@ export default function App({
   Component,
   pageProps
 }: AppProps<SharedPageProps>) {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const { draftMode, token } = pageProps
+  const router = useRouter()
+
+  const isStudio = router.pathname.startsWith('/studio')
+
+  useEffect(() => {
+    const handleStart = () => setIsLoading(true)
+    const handleComplete = () => setIsLoading(false)
+
+    router.events.on('routeChangeStart', handleStart)
+    router.events.on('routeChangeComplete', handleComplete)
+    router.events.on('routeChangeError', handleComplete)
+
+    return () => {
+      router.events.off('routeChangeStart', handleStart)
+      router.events.off('routeChangeComplete', handleComplete)
+      router.events.off('routeChangeError', handleComplete)
+    }
+  }, [router])
+
   return (
     <>
       <style jsx global>
@@ -47,13 +69,23 @@ export default function App({
           }
         `}
       </style>
-      {draftMode ? (
-        <PreviewProvider token={token}>
+      {isStudio ? (
+        isLoading ? (
+          <Loading />
+        ) : (
           <Component {...pageProps} />
-        </PreviewProvider>
+        )
+      ) : isLoading ? (
+        <Loading />
       ) : (
         <Layout>
-          <Component {...pageProps} />
+          {draftMode ? ( // Use pageProps.draftMode to conditionally render the PreviewProvider
+            <PreviewProvider token={token}>
+              <Component {...pageProps} />
+            </PreviewProvider>
+          ) : (
+            <Component {...pageProps} />
+          )}
         </Layout>
       )}
     </>

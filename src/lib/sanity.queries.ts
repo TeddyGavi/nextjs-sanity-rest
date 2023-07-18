@@ -96,7 +96,7 @@ const combinedMenuQuery = groq`{
   }
 }`
 
-const combinedRestuarantQuery = groq`*[_type == "information"][0]{
+const combinedRestuarantInfoQuery = groq`*[_type == "information"][0]{
   _id,
   'name':Title,
   phone,
@@ -138,6 +138,8 @@ _id,
   }
 }`
 
+const restLogo = groq`*[_type == "information"]{logo}`
+
 /* END QUERIES */
 
 /* FUNCTIONS */
@@ -149,10 +151,13 @@ export async function getAllRestInfo() {
   return await client.fetch(restInfoQuery)
 }
 export async function getSelectedRestInfo() {
-  return await client.fetch(combinedRestuarantQuery)
+  return await client.fetch(combinedRestuarantInfoQuery)
 }
-export async function getSitSettings() {
+export async function getSiteSettings() {
   return await client.fetch(siteSettings)
+}
+export async function getRestLogo() {
+  return await client.fetch(restLogo)
 }
 export async function getVideo() {
   return await client.fetch(cloudinaryVideoQuery)
