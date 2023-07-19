@@ -94,7 +94,8 @@ const combinedMenuQuery = groq`{
       'priceTwo': item.priceTwo,
       category->{'title': category, description}       
       }
-  }
+  },
+  "images": *[_type == "menuPhotos"][0].menuImages.images[] 
 }`
 
 const combinedRestaurantInfoQuery = groq`*[_type == "information"][0]{
@@ -214,8 +215,9 @@ export interface Address {
   postalCode: string
 }
 
-export interface Logo extends Image {
+export interface ImageWithAlt extends ImageAsset {
   alt?: string
+  title?: string
 }
 
 export interface Link {
@@ -230,7 +232,7 @@ export interface CombinedRestaurantInfo {
   links: Link[]
   email: string
   phone: string
-  logo: Logo
+  logo: ImageWithAlt
   address: Address
   hours: Hour[]
 }
@@ -275,5 +277,6 @@ export interface CombinedMenuQuery {
   Mains: MenuItem[]
   Drinks: Drinks[]
   drinksByCategory: DrinkByCategory[]
+  images: ImageWithAlt[]
 }
 /* END TYPES */

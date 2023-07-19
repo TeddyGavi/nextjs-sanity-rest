@@ -20,9 +20,9 @@ export default function Loading({
     >
       <svg
         aria-hidden="true"
-        className={`inline lg:h-36 lg:w-36 ${width ? `w-${width}` : `w-8`} ${
-          height ? `h-${height}` : `h-8`
-        } ${
+        className={`inline lg:h-36 lg:w-36 w-8 h-8 ${
+          width ? `md:w-${width}` : `w-8`
+        } ${height ? `md:h-${height}` : `h-8`} ${
           textColor ? `text-${textColor}-200` : `text-gray-200`
         } animate-spin dark:text-gray-600 ${
           fillColor

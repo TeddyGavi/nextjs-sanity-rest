@@ -25,9 +25,12 @@ export default defineType({
               validation: rule => rule.required()
             }),
             defineField({
-              name: 'menuCatPhoto',
+              name: 'title',
               title: 'Photo of which menu item?',
-              type: 'string'
+              type: 'string',
+              options: {
+                list: ['Bahn Mi', 'Pho', 'Mains', 'Drinks']
+              }
             })
           ]
         })

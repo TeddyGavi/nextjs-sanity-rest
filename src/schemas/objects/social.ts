@@ -8,12 +8,12 @@ export default defineType({
   icon: LinkIcon,
   fields: [
     defineField({
-      name: 'title',
+      name: 'url',
       title: 'URL',
       type: 'url'
     }),
     defineField({
-      name: 'link',
+      name: 'title',
       title: 'Link Title',
       type: 'string'
     }),
