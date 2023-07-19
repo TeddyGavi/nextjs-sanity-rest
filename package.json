@@ -27,7 +27,8 @@
     "react-wavify": "^1.8.3",
     "sanity": "3.14.1",
     "sanity-plugin-cloudinary": "^1.1.1",
-    "styled-components": "5.3.11"
+    "styled-components": "5.3.11",
+    "swr": "^2.2.0"
   },
   "devDependencies": {
     "@types/react": "18.2.14",

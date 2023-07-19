@@ -18,6 +18,11 @@ const muxVideoQuery = groq`*[_type == "information"][0]{
       }
   }  
 }`
+
+const socialLinks = groq`*[_type == "information"][0]{
+  links[]   
+}`
+
 const cloudinaryVideoQuery = groq`*[_type == "information"][0]{
   homeVid {
     url,
@@ -116,7 +121,7 @@ const combinedRestaurantInfoQuery = groq`*[_type == "information"][0]{
     closesAt,
   },
   links[]{
-    link,
+    url,
     title,
     handle,
   },
@@ -143,7 +148,9 @@ const restLogo = groq`*[_type == "information"]{logo}`
 export async function getPosts(): Promise<Post[]> {
   return await client.fetch(postsQuery)
 }
-
+export async function getSocialLinks(): Promise<Link[]> {
+  return await client.fetch(socialLinks)
+}
 export async function getAllRestInfo() {
   return await client.fetch(restInfoQuery)
 }
@@ -221,7 +228,7 @@ export interface ImageWithAlt extends ImageAsset {
 }
 
 export interface Link {
-  link?: string
+  url?: string
   title?: string
   handle?: string
 }

@@ -56,9 +56,8 @@ export default function Navbar() {
 const links = [
   { name: 'Home', to: '/', id: 0 },
   { name: 'Menu', to: 'menu', id: 1 },
-  { name: 'Location', to: 'location', id: 2 },
-  { name: 'Contact', to: 'contact', id: 3 }
-  // { name: 'Gallery', to: 'gallery', id: 4 }
+  { name: 'Find Us', to: 'location', id: 2 },
+  { name: 'Gallery', to: 'gallery', id: 3 }
 ]
 
 type NavLinkProps = {

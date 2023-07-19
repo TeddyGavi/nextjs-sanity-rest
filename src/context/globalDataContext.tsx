@@ -1,27 +1,34 @@
 import { createContext, useContext, useState } from 'react'
+import useSWR, { SWRResponse } from 'swr'
+
+import { Link } from '~/lib/sanity.queries'
+import { fetchSocialData } from '~/utils/socialData'
 type Context = {
-  data?: number
-  increment: () => void
+  data: {
+    links: Link[]
+  }
+  error: Error | undefined
+  isLoading: boolean
 }
-const dataContext = createContext<Context | null>(null)
-export const GlobalDataProvider = ({
-  children
-}: {
-  children: React.ReactNode
-}) => {
-  const [data, setData] = useState(0)
+const socialDataContext = createContext<Context | null>(null)
+const SocialDataProvider = ({ children }: { children: React.ReactNode }) => {
+  const { data, error, isLoading } = useSWR('/api/social', fetchSocialData)
+  if (error) throw new Error('Issue fetching data, please try again')
 
-  const increment = () => setData(data + 1)
-
-  const value = { data, increment }
-  return <dataContext.Provider value={value}>{children}</dataContext.Provider>
+  return (
+    <socialDataContext.Provider value={{ data, error, isLoading }}>
+      {children}
+    </socialDataContext.Provider>
+  )
 }
 
-export const useXContext = () => {
-  const context = useContext(dataContext)
+const useDataContext = () => {
+  const context = useContext(socialDataContext)
 
   if (!context)
-    throw new Error('XContext must be called from within the XContextProvider')
+    throw new Error('Context must be called from within the ContextProvider')
 
   return context
 }
+
+export { SocialDataProvider, useDataContext }

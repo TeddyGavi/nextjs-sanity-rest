@@ -2,17 +2,22 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import Wave from 'react-wavify'
 
+import { useDataContext } from '~/context/globalDataContext'
+import { Link } from '~/lib/sanity.queries'
+
+import Loading from './Loading'
 import { NavLinks } from './Navbar'
 
 export default function Footer() {
   const path = useRouter().pathname
+  const { data, isLoading, error } = useDataContext()
 
   if (path === '/') {
     return
   }
 
   return (
-    <footer className="relative mt-20 bg-darkMossGreen w-full flex flex-col items-center justify-center ">
+    <footer className="relative flex flex-col items-center justify-center w-full mt-20 bg-darkMossGreen ">
       <Wave
         className="absolute -top-20 -z-10"
         fill="#78B90F"
@@ -35,10 +40,24 @@ export default function Footer() {
           points: 6
         }}
       ></Wave>
-      <div className="flex flex-col justify-center items-center my-4">
+      <div className="flex flex-col items-center justify-center my-4">
         <NavLinks isFooter={true} />
       </div>
-      <div>socials</div>
+      <div>{isLoading ? <Loading /> : <FooterLinks links={data.links} />}</div>
     </footer>
+  )
+}
+
+function FooterLinks({ links }: { links: Link[] }) {
+  return (
+    <ul className="flex gap-4 tracking-wide text-appleGreen">
+      {links.map((link, i) => {
+        return (
+          <li key={i}>
+            <a href={`${link.url}`}>{link.title}</a>
+          </li>
+        )
+      })}
+    </ul>
   )
 }

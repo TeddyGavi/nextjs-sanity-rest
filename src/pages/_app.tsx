@@ -8,6 +8,8 @@ import { lazy, useEffect, useState } from 'react'
 import Layout from '~/components/Layout'
 import Loading from '~/components/Loading'
 
+import { SocialDataProvider } from '../context/globalDataContext'
+
 export interface SharedPageProps {
   draftMode: boolean
   token: string
@@ -72,25 +74,27 @@ export default function App({
           }
         `}
       </style>
-      {isStudio ? (
-        isLoading ? (
-          <Loading height={28} width={28} />
-        ) : (
-          <Component {...pageProps} />
-        )
-      ) : (
-        <Layout>
-          {isLoading ? (
+      <SocialDataProvider>
+        {isStudio ? (
+          isLoading ? (
             <Loading height={28} width={28} />
-          ) : draftMode ? ( // Use draftMode to conditionally render the PreviewProvider
-            <PreviewProvider token={token}>
-              <Component {...pageProps} />
-            </PreviewProvider>
           ) : (
             <Component {...pageProps} />
-          )}
-        </Layout>
-      )}
+          )
+        ) : (
+          <Layout>
+            {isLoading ? (
+              <Loading height={28} width={28} />
+            ) : draftMode ? ( // Use draftMode to conditionally render the PreviewProvider
+              <PreviewProvider token={token}>
+                <Component {...pageProps} />
+              </PreviewProvider>
+            ) : (
+              <Component {...pageProps} />
+            )}
+          </Layout>
+        )}
+      </SocialDataProvider>
     </>
   )
 }
