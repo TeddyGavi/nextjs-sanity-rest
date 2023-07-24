@@ -33,7 +33,7 @@ export default function Location({
   info
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <section className="flex items-center justify-center h-[100svh] font-sans text-md md:mt-0">
+    <section className="flex items-center justify-center h-[100svh] mt-16 font-sans text-md md:mt-0">
       {/* <Logo image={info.logo} /> */}
       <div className="flex flex-col w-10/12 gap-8 mx-auto md:flex-row text-darkMossGreen">
         <Contact email={info.email} links={info.links} phone={info.phone} />
@@ -84,7 +84,7 @@ function Contact({
   )
 }
 
-function Logo({ image }: { image: ImageWithAlt }) {
+/* function Logo({ image }: { image: ImageWithAlt }) {
   const { height, width } = getImageDimensions(image)
   return (
     <div className="">
@@ -103,7 +103,7 @@ function Logo({ image }: { image: ImageWithAlt }) {
       ></Image>
     </div>
   )
-}
+} */
 
 function Address({ streetOrPO, postalCode, province, city }: Address) {
   return (

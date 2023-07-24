@@ -100,7 +100,10 @@ const combinedMenuQuery = groq`{
       category->{'title': category, description}       
       }
   },
-  "images": *[_type == "menuPhotos"][0].menuImages.images[] 
+  "images": *[_type == "menuPhotos"][0].menuImages.images[]{
+    ..., 
+    "assetEx":asset->{...,metadata}
+  } 
 }`
 
 const combinedRestaurantInfoQuery = groq`*[_type == "information"][0]{
@@ -205,7 +208,7 @@ export interface Post {
   title?: string
   slug: Slug
   excerpt?: string
-  mainImage?: ImageAsset
+  mainImage?: Image
   body: PortableTextBlock[]
 }
 
@@ -222,9 +225,10 @@ export interface Address {
   postalCode: string
 }
 
-export interface ImageWithAlt extends ImageAsset {
+export interface ImageWithAlt extends Image {
   alt?: string
   title?: string
+  assetEx: ImageAsset
 }
 
 export interface Link {
