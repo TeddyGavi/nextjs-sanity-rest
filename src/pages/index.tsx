@@ -53,14 +53,14 @@ export default function IndexPage({
   width
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <div className="h-screen relative">
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-between gap-14 font-bold  text-teaGreen z-10">
-        <h1 className=" break-before-auto text-center text-4xl tracking-widest">
+    <div className="relative h-screen">
+      <div className="absolute z-10 flex flex-col items-center justify-between font-bold transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 gap-14 text-teaGreen">
+        <h1 className="text-4xl tracking-widest text-center  break-before-auto">
           Experience the Authentic Flavors of Vietnam at Taste of Saigon
         </h1>
         <Link
           href={'/menu'}
-          className="border-2 px-6 py-1 tracking-wide border-teaGreen hover:text-darkMossGreenAlt hover:shadow-xl hover:border-darkMossGreen focus:ring-4"
+          className="px-6 py-1 tracking-wide border-2 border-teaGreen hover:text-darkMossGreenAlt hover:shadow-xl hover:border-darkMossGreen focus:ring-4"
         >
           See the Menu
         </Link>
@@ -69,11 +69,12 @@ export default function IndexPage({
         height={height}
         width={width}
         src={`${url}`}
-        className="border-none h-full w-full object-cover"
+        className="object-cover w-full h-full border-none"
         title="video player of chef cooking"
         autoPlay
         loop
         muted
+        playsInline
       ></video>
     </div>
   )

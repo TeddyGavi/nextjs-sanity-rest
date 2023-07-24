@@ -1,4 +1,5 @@
 import {
+  ArrowTopRightOnSquareIcon,
   ClockIcon,
   IdentificationIcon,
   InboxIcon,
@@ -32,7 +33,7 @@ export default function Location({
   info
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <section className="flex items-center justify-center h-screen font-sans text-md ">
+    <section className="flex items-center justify-center h-[100svh] font-sans text-md ">
       {/* <Logo image={info.logo} /> */}
       <div className="flex flex-col w-10/12 gap-8 mx-auto md:flex-row text-darkMossGreen">
         <Contact email={info.email} links={info.links} phone={info.phone} />
@@ -62,10 +63,14 @@ function Contact({
       </div>
       <ul className="flex flex-col self-start gap-2">
         <li>{phone}</li>
-        <li>
+        <li className="flex gap-2 hover:underline hover:drop-shadow-xl">
           <a href={`mailto:${email}?subject=contact-from-Saigon-website`}>
-            {email}
+            {email}{' '}
           </a>
+          <ArrowTopRightOnSquareIcon
+            height={ICON_SIZE / 2}
+            width={ICON_SIZE / 2}
+          />
         </li>
         {links.map((link, i) => {
           return (

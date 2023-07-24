@@ -67,17 +67,17 @@ type NavLinkProps = {
 export function NavLinks({ isFooter }: NavLinkProps) {
   return (
     <ul
-      className={`text-lg font-medium h-full justify-evenly flex flex-col p-4 md:p-0 ${
-        isFooter ? `mt-0` : `mt-4`
+      className={`text-2xl font-medium h-[calc(95%)] justify-evenly flex flex-col p-4 md:p-0 ${
+        isFooter ? `mt-0` : `mt-2`
       }  md:flex-row md:space-x-8 md:mt-0 md:border-0`}
     >
       {links.map(({ name, to, id }) => {
         return (
           <li
             key={id}
-            className={`block py-2 pl-3 pr-4 ${
+            className={`block md:py-2 pl-3 pr-4 ${
               isFooter ? `text-white` : `text-darkMossGreen`
-            } hover:underline transition-all duration-300  md:bg-transparent  md:p-0`}
+            } hover:underline transition-all duration-300  md:bg-transparent  md:p-0 hover:drop-shadow-xl`}
           >
             <Link href={to}>{name}</Link>
           </li>
@@ -96,7 +96,7 @@ function MobileMenu({ openMenu }: openMenuFn) {
   return (
     <div
       onClick={() => openMenu()}
-      className="absolute right-0 flex flex-col items-center w-full h-screen mx-auto bg-white z-100"
+      className="absolute right-0 flex flex-col items-center w-full h-[100svh] mx-auto bg-white z-100"
     >
       {/* <div className="flex flex-col items-center "> */}
       <NavLinks />

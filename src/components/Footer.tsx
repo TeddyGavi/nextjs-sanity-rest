@@ -50,11 +50,16 @@ export default function Footer() {
 
 function FooterLinks({ links }: { links: Link[] }) {
   return (
-    <ul className="flex gap-4 tracking-wide text-appleGreen">
+    <ul className="flex gap-4 mb-4 tracking-wide text-appleGreen">
       {links.map((link, i) => {
         return (
           <li key={i}>
-            <a href={`${link.url}`}>{link.title}</a>
+            <a
+              className=" hover:text-white hover:drop-shadow-lg"
+              href={`${link.url}`}
+            >
+              {link.title}
+            </a>
           </li>
         )
       })}
