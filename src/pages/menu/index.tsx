@@ -125,6 +125,8 @@ function DrinkList({
   image: ImageWithAlt
   heading: string
 }) {
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+
   const { width, height } = getImageDimensions(image)
   const isEven = idx % 2 === 0
 
@@ -138,12 +140,15 @@ function DrinkList({
       <Image
         className={`my-4 md:m-4 ${
           isEven && `lg:order-1`
-        } aspect-[${width}/${height}]`}
+        } aspect-[${width}/${height}] ${
+          isLoading && 'scale-100 blur-xl grayscale'
+        }`}
         src={urlForImage(image).height(height).width(width).url()}
         alt={image.alt}
         width={width}
         height={height}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        onLoadingComplete={() => setIsLoading(false)}
       ></Image>
       <div aria-label="Drink list" className="w-full">
         {drink.map(({ _id, description, category, drinks }) => {
