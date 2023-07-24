@@ -10,8 +10,8 @@ export default function Navbar() {
       : (document.body.style.overflow = 'hidden')
   }
   function openMenu() {
-    setIsMenuOpen(prev => !prev)
     toggleScrollable()
+    setIsMenuOpen(prev => !prev)
   }
   return (
     <nav className="fixed top-0 z-20 w-full h-16 bg-white border-gray-200 divide-x shadow-md text-darkMossGreen dark:bg-gray-900">
@@ -48,7 +48,7 @@ export default function Navbar() {
           <NavLinks />
         </div>
       </div>
-      {isMenuOpen && <MobileMenu openMenu={openMenu} />}
+      {isMenuOpen && <MobileMenu openMenu={openMenu} isMenuOpen={isMenuOpen} />}
     </nav>
   )
 }
@@ -56,7 +56,7 @@ export default function Navbar() {
 const links = [
   { name: 'Home', to: '/', id: 0 },
   { name: 'Menu', to: 'menu', id: 1 },
-  { name: 'Find Us', to: 'location', id: 2 },
+  { name: 'Find Us', to: 'findus', id: 2 },
   { name: 'Gallery', to: 'gallery', id: 3 }
 ]
 
@@ -67,17 +67,17 @@ type NavLinkProps = {
 export function NavLinks({ isFooter }: NavLinkProps) {
   return (
     <ul
-      className={`text-2xl font-medium h-[calc(95%)] justify-evenly flex flex-col p-4 md:p-0 ${
-        isFooter ? `mt-0` : `mt-2`
-      }  md:flex-row md:space-x-8 md:mt-0 md:border-0`}
+      className={`md:text-2xl text-xl font-medium h-[calc(95%)] justify-evenly flex p-4 md:p-0  ${
+        isFooter ? `mt-0 flex-row` : `mt-2 flex-col md:flex-row`
+      }  md:space-x-8 md:mt-0 md:border-0`}
     >
       {links.map(({ name, to, id }) => {
         return (
           <li
             key={id}
-            className={`block md:py-2 pl-3 pr-4 ${
+            className={`block md:py-2 pl-3 pr-4  ${
               isFooter ? `text-white` : `text-darkMossGreen`
-            } hover:underline transition-all duration-300  md:bg-transparent  md:p-0 hover:drop-shadow-xl`}
+            } hover:underline   md:bg-transparent  md:p-0 hover:drop-shadow-xl`}
           >
             <Link href={to}>{name}</Link>
           </li>
@@ -92,11 +92,13 @@ type openMenuFn = {
   isMenuOpen?: boolean
 }
 
-function MobileMenu({ openMenu }: openMenuFn) {
+function MobileMenu({ openMenu, isMenuOpen }: openMenuFn) {
   return (
     <div
       onClick={() => openMenu()}
-      className="absolute right-0 flex flex-col items-center w-full h-[100svh] mx-auto bg-white z-100"
+      className={`absolute right-0 flex flex-col items-center w-full h-[100svh] mx-auto bg-white z-100  transition ${
+        isMenuOpen ? `opacity-100` : `opacity-0`
+      }`}
     >
       {/* <div className="flex flex-col items-center "> */}
       <NavLinks />

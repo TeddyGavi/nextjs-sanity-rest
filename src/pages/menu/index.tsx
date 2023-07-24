@@ -2,7 +2,7 @@ import { getImageDimensions } from '@sanity/asset-utils'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 
 import Loading from '~/components/Loading'
 import { urlForImage } from '~/lib/sanity.image'
@@ -35,7 +35,7 @@ export default function Menu({
   const headings = ['Bahn Mi', 'Pho', 'Mains', 'Drinks']
 
   return (
-    <div className="mt-20">
+    <div className="">
       {headings.map((heading, i) => {
         return heading === 'Drinks' ? (
           <DrinkList
@@ -70,6 +70,7 @@ function ItemWithImage({
   image: ImageWithAlt
   heading: string
 }) {
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const { width, height } = getImageDimensions(image)
   const isEven = idx % 2 === 0
   return (
@@ -79,19 +80,20 @@ function ItemWithImage({
       <h2 className="col-span-2 my-4 text-2xl text-center underline lg:text-6xl text-darkMossGreen">
         {heading}
       </h2>
-      <Suspense fallback={<Loading />}>
-        <Image
-          className={`my-4 lg:m-4 ${
-            isEven && `lg:order-1`
-          } aspect-[${width}/${height}]`}
-          src={urlForImage(image).height(height).width(width).url()}
-          alt={image.alt}
-          width={width}
-          height={height}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority={idx === 0}
-        ></Image>
-      </Suspense>
+      <Image
+        className={`my-4 lg:m-4 aspect-[${width}/${height}] ${
+          isEven && `lg:order-1`
+        } aspect-[${width}/${height}] ${
+          isLoading && 'scale-100 blur-xl grayscale'
+        }`}
+        src={urlForImage(image).height(height).width(width).url()}
+        alt={image.alt}
+        width={width}
+        height={height}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        priority={idx === 0}
+        onLoadingComplete={() => setIsLoading(false)}
+      ></Image>
       <ul className="flex flex-col w-10/12 mx-auto lg:self-start">
         {items.map(({ _id, title, description, price }) => {
           return (
@@ -133,18 +135,16 @@ function DrinkList({
       <h2 className="col-span-2 my-4 text-2xl text-center underline lg:text-6xl text-darkMossGreen">
         {heading}
       </h2>
-      <Suspense fallback={<Loading />}>
-        <Image
-          className={`my-4 md:m-4 ${
-            isEven && `lg:order-1`
-          } aspect-[${width}/${height}]`}
-          src={urlForImage(image).height(height).width(width).url()}
-          alt={image.alt}
-          width={width}
-          height={height}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        ></Image>
-      </Suspense>
+      <Image
+        className={`my-4 md:m-4 ${
+          isEven && `lg:order-1`
+        } aspect-[${width}/${height}]`}
+        src={urlForImage(image).height(height).width(width).url()}
+        alt={image.alt}
+        width={width}
+        height={height}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      ></Image>
       <div aria-label="Drink list" className="w-full">
         {drink.map(({ _id, description, category, drinks }) => {
           return (

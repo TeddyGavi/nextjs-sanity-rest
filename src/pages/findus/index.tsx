@@ -33,7 +33,7 @@ export default function Location({
   info
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <section className="flex items-center justify-center h-[100svh] font-sans text-md ">
+    <section className="flex items-center justify-center h-[100svh] font-sans text-md md:mt-0">
       {/* <Logo image={info.logo} /> */}
       <div className="flex flex-col w-10/12 gap-8 mx-auto md:flex-row text-darkMossGreen">
         <Contact email={info.email} links={info.links} phone={info.phone} />
