@@ -1,23 +1,19 @@
-import { ImageIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'menuPhotos',
-  title: 'Menu Photos',
-  description:
-    'These Photos are displayed on Menu listing page, be careful when modifying! The assigned type will be the heading photo shown',
+  name: 'gallery',
+  title: 'Gallery',
   type: 'document',
-  icon: ImageIcon,
   fields: [
     defineField({
-      name: 'menuImages',
-      title: 'Menu Images',
+      name: 'galleryImages',
+      title: 'Gallery',
       type: 'imageGallery'
     })
   ],
   preview: {
     select: {
-      images: 'menuImages'
+      images: 'galleryImages'
     },
     prepare(selection) {
       const { images } = selection

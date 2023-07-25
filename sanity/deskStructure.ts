@@ -2,6 +2,7 @@ import { CogIcon } from '@sanity/icons'
 import { ComposeIcon } from '@sanity/icons'
 import { MenuIcon } from '@sanity/icons'
 import { InfoOutlineIcon } from '@sanity/icons'
+import { ImagesIcon } from '@sanity/icons'
 import { StructureBuilder } from 'sanity/desk'
 
 export const myStructure = (S: StructureBuilder) =>
@@ -19,7 +20,9 @@ export const myStructure = (S: StructureBuilder) =>
             .items([
               ...S.documentTypeListItems().filter(
                 listItem =>
-                  !['information', 'siteSettings'].includes(listItem.getId())
+                  !['information', 'siteSettings', 'gallery'].includes(
+                    listItem.getId()
+                  )
               )
             ])
         ),
@@ -38,7 +41,11 @@ export const myStructure = (S: StructureBuilder) =>
                   S.document()
                     .schemaType('information')
                     .documentId('information')
-                )
+                ),
+              S.listItem()
+                .title('Gallery')
+                .icon(ImagesIcon)
+                .child(S.document().schemaType('gallery').documentId('gallery'))
             ])
         ),
       S.listItem()
