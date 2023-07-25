@@ -108,7 +108,7 @@ const combinedMenuQuery = groq`{
   },
   "images": *[_type == "menuPhotos"][0].menuImages.images[]{
     ..., 
-    "assetEx":asset->{...,metadata}
+    "expandedAsset":asset->{...,metadata}
   } 
 }`
 
@@ -151,6 +151,14 @@ _id,
 
 const restLogo = groq`*[_type == "information"]{logo}`
 
+const imagesInGallery = groq`*[_type == "gallery"][0].galleryImages.images[]{
+  ...,
+  "expandedAsset": asset->{
+    ...,
+    metadata 
+  }
+}`
+
 /* END QUERIES */
 
 /* FUNCTIONS */
@@ -189,6 +197,9 @@ export async function getMains() {
 }
 export async function getBahnMi() {
   return await client.fetch(bahnMiQuery)
+}
+export async function getImageGallery(): Promise<ImageWithAlt[]> {
+  return await client.fetch(imagesInGallery)
 }
 export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0]`
 
@@ -234,7 +245,7 @@ export interface Address {
 export interface ImageWithAlt extends Image {
   alt?: string
   title?: string
-  assetEx: ImageAsset
+  expandedAsset: ImageAsset
 }
 
 export interface Link {
@@ -300,4 +311,5 @@ export interface CombinedMenuQuery {
   drinksByCategory: DrinkByCategory[]
   images: ImageWithAlt[]
 }
+
 /* END TYPES */

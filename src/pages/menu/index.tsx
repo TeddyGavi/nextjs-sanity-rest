@@ -92,7 +92,7 @@ function ItemWithImage({
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         priority={idx === 0}
         placeholder="blur"
-        blurDataURL={image.assetEx.metadata.lqip}
+        blurDataURL={image.expandedAsset.metadata.lqip}
       ></Image>
       <ul className="flex flex-col w-10/12 mx-auto lg:self-start">
         {items.map(({ _id, title, description, price }) => {
@@ -145,7 +145,7 @@ function DrinkList({
         alt={image.alt}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         placeholder="blur"
-        blurDataURL={image.assetEx.metadata.lqip}
+        blurDataURL={image.expandedAsset.metadata.lqip}
       ></Image>
       <div aria-label="Drink list" className="w-full">
         {drink.map(({ _id, description, category, drinks }) => {
