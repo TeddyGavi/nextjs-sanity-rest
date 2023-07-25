@@ -33,9 +33,11 @@ export default function Navbar() {
           ) : (
             <>
               <Logo image={data.logo} client={client} />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap ">
-                Tate of Saigon
-              </span>
+              <Link href={'/'}>
+                <span className="self-center text-2xl font-semibold whitespace-nowrap hover:underline focus:underline">
+                  Tate of Saigon
+                </span>
+              </Link>
             </>
           )}
         </div>
@@ -47,7 +49,7 @@ export default function Navbar() {
           aria-controls="navbar-default"
           aria-expanded={isMenuOpen ? 'true' : 'false'}
         >
-          <span className="sr-only">Open main menu</span>
+          <span className="sr-only">Open navigation menu</span>
           <svg
             className="w-5 h-5"
             aria-hidden="true"
@@ -116,7 +118,7 @@ function MobileMenu({ openMenu, isMenuOpen }: openMenuFn) {
   return (
     <div
       onClick={() => openMenu()}
-      className={`absolute right-0 items-center flex flex-col w-full h-screen mx-auto bg-white z-100 `}
+      className={`absolute right-0 top-16 items-center justify-center flex flex-col w-full h-screen mx-auto bg-white z-100 `}
     >
       <NavLinks />
     </div>

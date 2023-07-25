@@ -80,7 +80,7 @@ function ItemWithImage({
     <section
       className={` flex flex-col items-center lg:grid lg:grid-cols-2 lg:items-start`}
     >
-      <h2 className="col-span-2 my-4 text-2xl text-center underline lg:text-6xl text-darkMossGreen">
+      <h2 className="col-span-2 my-4 text-2xl font-semibold text-center underline lg:text-6xl text-darkMossGreen">
         {heading}
       </h2>
       <Image
@@ -99,7 +99,7 @@ function ItemWithImage({
           return (
             <li
               key={_id}
-              className="flex flex-col gap-2 mt-8 font-mono font-bold tracking-wide lg:gap-8 md:p-8 text-md lg:text-2xl break-before-auto text-darkMossGreen"
+              className="flex flex-col gap-2 mt-8 font-bold tracking-wide lg:gap-8 md:p-8 text-md lg:text-2xl break-before-auto text-darkMossGreen"
             >
               <span>{title}</span>
               <p className="font-serif text-lg font-normal tracking-wide text-darkMossGreenAlt break-before-auto">
@@ -172,7 +172,7 @@ function DrinkItem({ drinks }: { drinks: Drinks[] }) {
       {drinks.map(({ _id, title, price, priceTwo, category }) => {
         return (
           <li key={_id} className="w-10/12 p-1 mx-auto mt-1 md:p-2">
-            <div className="flex justify-between font-serif font-normal tracking-wide text-md md:text-xl break-before-auto text-darkMossGreen">
+            <div className="flex justify-between font-serif text-lg tracking-wide md:text-xl break-before-auto text-darkMossGreen">
               <span>{title}</span>
               {priceTwo ? (
                 <span>
