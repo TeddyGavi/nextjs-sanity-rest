@@ -1,10 +1,12 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext } from 'react'
+import { LogoProps } from 'sanity'
 import useSWR, { SWRResponse } from 'swr'
 
-import { Link } from '~/lib/sanity.queries'
+import { Link, myLogo } from '~/lib/sanity.queries'
 import { fetchSocialData } from '~/utils/socialData'
 type Context = {
   data: {
+    logo: myLogo
     links: Link[]
   }
   error: Error | undefined
@@ -12,9 +14,11 @@ type Context = {
 }
 const socialDataContext = createContext<Context | null>(null)
 const SocialDataProvider = ({ children }: { children: React.ReactNode }) => {
-  const { data, error, isLoading } = useSWR('/api/social', fetchSocialData)
+  const { data, error, isLoading }: SWRResponse = useSWR(
+    '/api/social',
+    fetchSocialData
+  )
   if (error) throw new Error('Issue fetching data, please try again')
-
   return (
     <socialDataContext.Provider value={{ data, error, isLoading }}>
       {children}

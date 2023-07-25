@@ -19,7 +19,13 @@ const muxVideoQuery = groq`*[_type == "information"][0]{
   }  
 }`
 
-const socialLinks = groq`*[_type == "information"][0]{
+const socialAndLogo = groq`*[_type == "information"][0]{
+  logo{
+    asset->{
+      ...,
+      metadata
+    }
+  },
   links[]   
 }`
 
@@ -151,8 +157,8 @@ const restLogo = groq`*[_type == "information"]{logo}`
 export async function getPosts(): Promise<Post[]> {
   return await client.fetch(postsQuery)
 }
-export async function getSocialLinks(): Promise<Link[]> {
-  return await client.fetch(socialLinks)
+export async function getSocialAndLogo(): Promise<Link[]> {
+  return await client.fetch(socialAndLogo)
 }
 export async function getAllRestInfo() {
   return await client.fetch(restInfoQuery)
@@ -235,6 +241,10 @@ export interface Link {
   url?: string
   title?: string
   handle?: string
+}
+
+export interface myLogo {
+  asset: ImageAsset
 }
 
 export interface CombinedRestaurantInfo {

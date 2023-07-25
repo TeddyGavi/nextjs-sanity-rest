@@ -1,14 +1,10 @@
-import { getImageDimensions } from '@sanity/asset-utils'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { SanityClient } from 'next-sanity'
 import { useNextSanityImage } from 'next-sanity-image'
-import React, { Suspense, useState } from 'react'
+import React from 'react'
 
-import Loading from '~/components/Loading'
 import { getClient } from '~/lib/sanity.client'
-import { urlForImage } from '~/lib/sanity.image'
 import {
   CombinedMenuQuery,
   DrinkByCategory,

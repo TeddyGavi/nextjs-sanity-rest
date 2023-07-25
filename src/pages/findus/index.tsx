@@ -5,18 +5,14 @@ import {
   InboxIcon,
   MapPinIcon
 } from '@heroicons/react/24/outline'
-import { getImageDimensions } from '@sanity/asset-utils'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import Image from 'next/image'
 import React from 'react'
 
-import { urlForImage } from '~/lib/sanity.image'
 import {
   Address,
   CombinedRestaurantInfo,
   getSelectedRestInfo,
   Hour,
-  ImageWithAlt,
   Link
 } from '~/lib/sanity.queries'
 
@@ -33,8 +29,7 @@ export default function Location({
   info
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <section className="flex items-center justify-center h-[100svh] mt-16 font-sans text-md md:mt-0">
-      {/* <Logo image={info.logo} /> */}
+    <section className="flex items-center justify-center h-full py-2 mt-16 font-sans md:h-screen text-md md:mt-0">
       <div className="flex flex-col w-10/12 gap-8 mx-auto md:flex-row text-darkMossGreen">
         <Contact email={info.email} links={info.links} phone={info.phone} />
         <Address {...info.address} />
@@ -83,27 +78,6 @@ function Contact({
     </div>
   )
 }
-
-/* function Logo({ image }: { image: ImageWithAlt }) {
-  const { height, width } = getImageDimensions(image)
-  return (
-    <div className="">
-      <Image
-        className="w-screen opacity-10"
-        src={urlForImage(image)
-          .height(height)
-          .width(width)
-          .crop('center')
-          .url()}
-        alt={image.alt}
-        width={width}
-        height={height}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        priority
-      ></Image>
-    </div>
-  )
-} */
 
 function Address({ streetOrPO, postalCode, province, city }: Address) {
   return (
