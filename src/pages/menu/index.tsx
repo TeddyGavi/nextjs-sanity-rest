@@ -153,7 +153,7 @@ function DrinkList({
             <div key={_id} className="">
               <h3 className="flex flex-col items-center mt-4 mb-0 font-bold tracking-wide text-center text-md md:text-2xl text-darkMossGreenAlt">
                 {category}
-                <span className="italic font-normal text-md md:text-lg text-appleGreen">
+                <span className="italic font-normal text-md md:text-lg ">
                   {description}
                 </span>
               </h3>

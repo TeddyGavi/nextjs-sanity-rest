@@ -55,7 +55,7 @@ export default function IndexPage({
   return (
     <div className="relative h-screen">
       <div className="absolute z-10 flex flex-col items-center justify-between font-bold transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 gap-14 text-teaGreen">
-        <h1 className="text-4xl tracking-widest text-center  break-before-auto">
+        <h1 className="text-4xl tracking-widest text-center break-before-auto">
           Experience the Authentic Flavors of Vietnam at Taste of Saigon
         </h1>
         <Link
@@ -75,7 +75,9 @@ export default function IndexPage({
         loop
         muted
         playsInline
-      ></video>
+      >
+        <track kind="captions" />
+      </video>
     </div>
   )
 }

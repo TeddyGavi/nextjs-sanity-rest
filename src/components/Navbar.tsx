@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useNextSanityImage } from 'next-sanity-image'
 import { useState } from 'react'
 import { SanityClient } from 'sanity'
@@ -7,8 +8,6 @@ import { SanityClient } from 'sanity'
 import { useDataContext } from '~/context/globalDataContext'
 import { getClient } from '~/lib/sanity.client'
 import { myLogo } from '~/lib/sanity.queries'
-
-import Loading from './Loading'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
@@ -25,11 +24,14 @@ export default function Navbar() {
     setIsMenuOpen(prev => !prev)
   }
   return (
-    <nav className="fixed top-0 z-20 w-full h-16 bg-white border-gray-200 divide-x shadow-md text-darkMossGreen ">
+    <nav
+      aria-label="primary navigation menu"
+      className="fixed top-0 z-20 w-full h-16 bg-white border-gray-200 divide-x shadow-md text-darkMossGreen "
+    >
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <div className="flex items-center justify-center gap-2">
           {isLoading ? (
-            <Loading />
+            <></>
           ) : (
             <>
               <Logo image={data.logo} client={client} />
@@ -45,7 +47,7 @@ export default function Navbar() {
           onClick={openMenu}
           data-collapse-toggle="navbar-default"
           type="button"
-          className="inline-flex items-center justify-center w-5 h-5 text-sm md:hidden focus:outline-none focus:ring-2 focus:ring-darkMossGreen focus:p-1"
+          className="inline-flex items-center justify-center w-5 h-5 text-sm md:hidden focus:outline-none focus:ring-2 focus:ring-darkMossGreen"
           aria-controls="navbar-default"
           aria-expanded={isMenuOpen ? 'true' : 'false'}
         >
@@ -87,21 +89,32 @@ type NavLinkProps = {
 }
 
 export function NavLinks({ isFooter }: NavLinkProps) {
+  const currentRoute = useRouter().pathname.substring(1)
+  // console.log(currentRoute)
   return (
     <ul
-      className={`md:text-lg text-xl font-medium min-h-min flex justify-center p-4 md:p-0  ${
+      aria-label="navigation links"
+      className={`md:text-lg text-2xl font-medium min-h-min flex justify-center p-4 md:p-0  ${
         isFooter ? `mt-0 flex-row` : `mt-2 flex-col md:flex-row`
-      }  md:space-x-8 md:mt-0 md:border-0`}
+      }  md:space-x-8 md:mt-0 `}
     >
       {links.map(({ name, to, id }) => {
         return (
           <li
+            aria-current="page"
             key={id}
             className={`block my-8 md:my-0 md:py-2 pl-3 pr-4  ${
               isFooter ? `text-white` : `text-darkMossGreen`
-            } hover:underline   md:bg-transparent  md:p-0 hover:drop-shadow-xl`}
+            } hover:underline  md:p-0 hover:drop-shadow-xl ${
+              currentRoute === to &&
+              `border-b-2 hover:no-underline ${
+                isFooter ? `border-white` : `border-darkMossGreen`
+              } `
+            }`}
           >
-            <Link href={to}>{name}</Link>
+            <Link className={``} href={to}>
+              {name}
+            </Link>
           </li>
         )
       })}

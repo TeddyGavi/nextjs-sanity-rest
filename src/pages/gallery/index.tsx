@@ -20,8 +20,8 @@ export default function Contact({
   const client = getClient()
   return (
     <section className="grid items-center w-full grid-flow-row grid-cols-1 mx-auto mt-16 md:grid-cols-3">
-      {images.map((image, i) => {
-        return <MyImage key={i} image={image} client={client} />
+      {images.map((image, idx) => {
+        return <MyImage key={idx} image={image} client={client} />
       })}
     </section>
   )
@@ -37,7 +37,8 @@ function MyImage({
   const imageProps = useNextSanityImage(client, image)
   return (
     <Image
-      className={` p-4 aspect-[${imageProps.width}/${imageProps.height}`}
+      className={` p-4 aspect-[${imageProps.width}/${imageProps.height}
+`}
       {...imageProps}
       alt={image.alt}
       placeholder="blur"

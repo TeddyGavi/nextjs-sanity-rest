@@ -50,7 +50,7 @@ export default function Footer() {
 
 function FooterLinks({ links }: { links: Link[] }) {
   return (
-    <ul className="flex gap-4 mb-4 tracking-wide text-appleGreen">
+    <ul className="flex gap-4 mb-4 tracking-wide text-teaGreen">
       {links.map((link, i) => {
         return (
           <li key={i}>
