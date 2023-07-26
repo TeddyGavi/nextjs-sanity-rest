@@ -71,14 +71,11 @@ function Contact({
           return (
             <li
               key={i}
-              className="hover:underline hover:opacity-80 focus:opacity-80 hover:fill-teaGreen"
+              className="flex items-center justify-start gap-4 hover:underline hover:opacity-80 focus:opacity-80 hover:fill-teaGreen"
             >
-              <a
-                className="flex items-center justify-end gap-4"
-                href={`${link.url}`}
-              >
+              <SocialIcons title={link.title} isFooter={false} />
+              <a className="items-start" href={`${link.url}`}>
                 {link.title}
-                <SocialIcons title={link.title} isFooter={false} />
               </a>
             </li>
           )

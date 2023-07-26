@@ -7,7 +7,7 @@ export default function Facebook({ isFooter }: { isFooter?: boolean }) {
       className={`w-8 h-8 ${
         isFooter
           ? `fill-white hover:opacity-80 focus:opacity-80 hover:fill-teaGreen`
-          : `fill-darkMossGreen`
+          : `fill-darkMossGreen self-center`
       } `}
       role="img"
       viewBox="0 0 24 24"

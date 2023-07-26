@@ -17,8 +17,10 @@ export default function SocialIcons({ title, isFooter }: SocialIconsProps) {
     case 'google maps':
       return (
         <MapPinIcon
-          className={`w-10 h-10 p-0 m-0 hover:opacity-80 focus:opacity-80 hover:text-teaGreen ${
-            !isFooter && ``
+          className={`w-8 h-8 p-0 m-0${
+            isFooter
+              ? `hover:opacity-80 focus:opacity-80 hover:text-teaGreen `
+              : `self-start`
           }`}
         />
       )
