@@ -9,6 +9,8 @@ import { useDataContext } from '~/context/globalDataContext'
 import { getClient } from '~/lib/sanity.client'
 import { myLogo } from '~/lib/sanity.queries'
 
+import Loading from './Loading'
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const { data, isLoading } = useDataContext()
@@ -31,13 +33,13 @@ export default function Navbar() {
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <div className="flex items-center justify-center gap-2">
           {isLoading ? (
-            <></>
+            <Loading isHeader={true} />
           ) : (
             <>
               <Logo image={data.logo} client={client} />
               <Link href={'/'}>
                 <span className="self-center text-2xl font-semibold whitespace-nowrap hover:underline focus:underline">
-                  Tate of Saigon
+                  Taste of Saigon
                 </span>
               </Link>
             </>
@@ -89,13 +91,14 @@ type NavLinkProps = {
 }
 
 export function NavLinks({ isFooter }: NavLinkProps) {
-  const currentRoute = useRouter().pathname.substring(1)
-  // console.log(currentRoute)
+  const currentRoute = useRouter().pathname
   return (
     <ul
       aria-label="navigation links"
-      className={`md:text-lg text-2xl font-medium min-h-min flex justify-center p-4 md:p-0  ${
-        isFooter ? `mt-0 flex-row` : `mt-2 flex-col md:flex-row`
+      className={`md:text-lg font-medium min-h-min flex justify-center p-4 md:p-0  ${
+        isFooter
+          ? `mt-0 flex-row text-xl`
+          : `mt-2 flex-col md:flex-row text-2xl`
       }  md:space-x-8 md:mt-0 `}
     >
       {links.map(({ name, to, id }) => {
@@ -103,10 +106,10 @@ export function NavLinks({ isFooter }: NavLinkProps) {
           <li
             aria-current="page"
             key={id}
-            className={`block my-8 md:my-0 md:py-2 pl-3 pr-4  ${
+            className={`block my-8 md:my-0 md:py-1 pl-3 pr-4  ${
               isFooter ? `text-white` : `text-darkMossGreen`
             } hover:underline  md:p-0 hover:drop-shadow-xl ${
-              currentRoute === to &&
+              (currentRoute === '/' + to || currentRoute === to) &&
               `border-b-2 hover:no-underline ${
                 isFooter ? `border-white` : `border-darkMossGreen`
               } `
@@ -131,7 +134,7 @@ function MobileMenu({ openMenu, isMenuOpen }: openMenuFn) {
   return (
     <div
       onClick={() => openMenu()}
-      className={`absolute right-0 top-16 items-center justify-center flex flex-col w-full h-screen mx-auto bg-white z-100 `}
+      className={`absolute right-0  items-center justify-center flex flex-col w-full h-screen mx-auto bg-white z-100 `}
     >
       <NavLinks />
     </div>

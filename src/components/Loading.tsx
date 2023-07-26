@@ -5,29 +5,33 @@ type LoadingProps = {
   width?: number
   fillColor?: string
   textColor?: string
+  isHeader?: boolean
 }
 
 export default function Loading({
   width,
   height,
   fillColor,
-  textColor
+  textColor,
+  isHeader
 }: LoadingProps) {
   return (
     <div
       role="status"
-      className="flex flex-col items-center justify-center w-screen h-screen gap-y-28"
+      className={`flex flex-col items-center justify-center ${
+        isHeader ? `w-full h-full` : `w-screen h-screen gap-y-28`
+      }`}
     >
       <svg
         aria-hidden="true"
-        className={`inline lg:h-36 lg:w-36 w-8 h-8 ${
-          width ? `md:w-${width}` : `w-8`
-        } ${height ? `md:h-${height}` : `h-8`} ${
+        className={`inline ${
+          isHeader ? `w-8 h-8` : `w-8 h-8 lg:h-36 lg:w-36`
+        } ${width ? `md:w-${width}` : `w-8`} ${
+          height ? `md:h-${height}` : `h-8`
+        } ${
           textColor ? `text-${textColor}-200` : `text-gray-200`
-        } animate-spin dark:text-gray-600 ${
-          fillColor
-            ? `fill-${fillColor}-900`
-            : `fill-slate-900 dark:fill-stone-300`
+        } animate-spin ${
+          fillColor ? `fill-${fillColor}-900` : `fill-slate-900`
         }`}
         viewBox="0 0 100 101"
         fill="none"
@@ -43,9 +47,13 @@ export default function Loading({
         />
       </svg>
       <span className="sr-only">Loading...</span>
-      <div className="font-mono text-2xl font-extrabold tracking-wider text-darkMossGreen">
-        Loading...
-      </div>
+      {isHeader ? (
+        <></>
+      ) : (
+        <div className="font-mono text-2xl font-extrabold tracking-wider text-darkMossGreen">
+          Loading...
+        </div>
+      )}
     </div>
   )
 }

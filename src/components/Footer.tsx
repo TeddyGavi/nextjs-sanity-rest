@@ -7,6 +7,7 @@ import { Link } from '~/lib/sanity.queries'
 
 import Loading from './Loading'
 import { NavLinks } from './Navbar'
+import SocialIcons from './SocialIcons'
 
 export default function Footer() {
   const path = useRouter().pathname
@@ -43,7 +44,7 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-center my-4">
         <NavLinks isFooter={true} />
       </div>
-      <div>{isLoading ? <Loading /> : <FooterLinks links={data.links} />}</div>
+      {isLoading ? <Loading /> : <FooterLinks links={data.links} />}
     </footer>
   )
 }
@@ -53,12 +54,12 @@ function FooterLinks({ links }: { links: Link[] }) {
     <ul className="flex gap-4 mb-4 tracking-wide text-teaGreen">
       {links.map((link, i) => {
         return (
-          <li key={i}>
+          <li key={i} className="self-center">
             <a
               className=" hover:text-white hover:drop-shadow-lg"
               href={`${link.url}`}
             >
-              {link.title}
+              <SocialIcons isFooter={true} title={link.title} />
             </a>
           </li>
         )

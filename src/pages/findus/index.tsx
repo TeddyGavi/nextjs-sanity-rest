@@ -2,12 +2,12 @@ import {
   ArrowTopRightOnSquareIcon,
   ClockIcon,
   IdentificationIcon,
-  InboxIcon,
   MapPinIcon
 } from '@heroicons/react/24/outline'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import React from 'react'
 
+import SocialIcons from '~/components/SocialIcons'
 import {
   Address,
   CombinedRestaurantInfo,
@@ -69,8 +69,17 @@ function Contact({
         </li>
         {links.map((link, i) => {
           return (
-            <li key={i}>
-              <a href={`${link.url}`}>{link.title}</a>
+            <li
+              key={i}
+              className="hover:underline hover:opacity-80 focus:opacity-80 hover:fill-teaGreen"
+            >
+              <a
+                className="flex items-center justify-end gap-4"
+                href={`${link.url}`}
+              >
+                {link.title}
+                <SocialIcons title={link.title} isFooter={false} />
+              </a>
             </li>
           )
         })}
