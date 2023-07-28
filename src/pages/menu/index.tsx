@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps<{
   menu: CombinedMenuQuery
 }> = async () => {
   const menu = await getMenu()
-  return { props: { menu }, fallback: "blocking", revalidate: 60 }
+  return { props: { menu, fallback: "blocking", revalidate: 60 } }
 }
 
 export default function Menu({
