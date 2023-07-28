@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps<{
   menu: CombinedMenuQuery
 }> = async () => {
   const menu = await getMenu()
-  return { props: { menu } }
+  return { props: { menu }, fallback: "blocking", revalidate: 60 }
 }
 
 export default function Menu({
@@ -35,12 +35,12 @@ export default function Menu({
   const headings = ['Bahn Mi', 'Pho', 'Mains', 'Drinks']
 
   return (
-    <div className="">
+    <div>
       {headings.map((heading, i) => {
         return heading === 'Drinks' ? (
           <DrinkList
-            client={client}
             key={menu.Drinks[0]._id}
+            client={client}
             idx={i}
             drink={menu.drinksByCategory}
             image={imageResolver(menu.images, 'Drinks')}
@@ -48,9 +48,9 @@ export default function Menu({
           />
         ) : (
           <ItemWithImage
+            key={menu[heading][0]._id}
             client={client}
             idx={i}
-            key={menu[heading][i]._id}
             items={menu[heading]}
             image={imageResolver(menu.images, heading)}
             heading={heading}

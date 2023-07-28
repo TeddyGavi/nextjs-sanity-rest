@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps<{
   info: CombinedRestaurantInfo
 }> = async () => {
   const info = await getSelectedRestInfo()
-  return { props: { info } }
+  return { props: { info }, fallback: "blocking", revalidate: 60 }
 }
 
 export default function Location({
