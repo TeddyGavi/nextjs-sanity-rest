@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps<{
   images: ImageWithAlt[]
 }> = async () => {
   const images = await getImageGallery()
-  return { props: { images, fallback: "blocking", revalidate: 60 } }
+  return { props: { images }, revalidate: 60 }
 }
 
 export default function Contact({
